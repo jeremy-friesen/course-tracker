@@ -6,8 +6,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
@@ -22,10 +20,6 @@ public class Main extends Application {
         TextField futureValue = new TextField();
         TextField years = new TextField();
 
-        /*
-        pane.getChildren().addAll(new Label("Investment Amount "), investmentAmount,
-                new Label("Years "), years, new Label("Annual Interest Rate "), annualInterestRate, new Label("Future Value"), futureValue);
-        */
 
         pane.add(new Label("Investment Amount"),0,1);
         pane.add(new Label("Years"),0,2);

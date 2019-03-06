@@ -2,8 +2,6 @@ package sample;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Random;
-
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
