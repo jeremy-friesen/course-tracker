@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" serverName="https://github.com/spencerdenford/assignment" uploadOnCheckin="798ddf90-fc9f-4407-a858-5e8d78657407">
+  <component name="PublishConfigData" serverName="https://github.com/spencerdenford/assignment" uploadOnCheckin="97f858d6-1944-4045-b8be-55154d9a7063">
     <serverData>
+      <paths name="https://github.com/JaG31/James-Gillies-Spencer-Denford-Assignment.git">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
       <paths name="https://github.com/spencerdenford/assignment">
         <serverdata>
           <mappings>
@@ -10,6 +17,6 @@
         </serverdata>
       </paths>
     </serverData>
-    <option name="myUploadOnCheckinName" value="https://github.com/spencerdenford/assignment" />
+    <option name="myUploadOnCheckinName" value="https://github.com/JaG31/James-Gillies-Spencer-Denford-Assignment.git" />
   </component>
 </project>

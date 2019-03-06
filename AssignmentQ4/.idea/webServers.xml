@@ -10,6 +10,14 @@
           <option name="port" value="21" />
         </fileTransfer>
       </webServer>
+      <webServer id="97f858d6-1944-4045-b8be-55154d9a7063" name="https://github.com/JaG31/James-Gillies-Spencer-Denford-Assignment.git" url="https://github.com/JaG31/James-Gillies-Spencer-Denford-Assignment.git">
+        <fileTransfer host="https://github.com/JaG31/James-Gillies-Spencer-Denford-Assignment.git" port="21" accessType="FTPS">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="21" />
+        </fileTransfer>
+      </webServer>
     </option>
   </component>
 </project>
