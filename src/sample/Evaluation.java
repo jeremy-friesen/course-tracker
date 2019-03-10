@@ -2,12 +2,17 @@ package sample;
 
 public class Evaluation {
 	private double markWeight;
-	private boolean isComplete;
+	private boolean isComplete = false;
 	private double mark;
 
 	// Constructors
 	public Evaluation(double markWeight){
 		this.markWeight = markWeight;
+	}
+
+	public Evaluation(double markWeight, boolean isComplete){
+		this.markWeight = markWeight;
+		this.isComplete = isComplete;
 	}
 
 	public Evaluation(){}

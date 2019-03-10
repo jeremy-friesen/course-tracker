@@ -3,10 +3,17 @@ package sample;
 import java.util.ArrayList;
 
 public class Course {
+	private String courseName;
 	private String courseCode;
 	private ArrayList<Evaluation> evaluations = new ArrayList<Evaluation>();
 
-	public Course(String courseCode){
+	// Constructor
+	public Course(String courseName){
+		this.courseName = courseName;
+	}
+
+	public Course(String courseName, String courseCode){
+		this.courseName = courseName;
 		this.courseCode = courseCode;
 	}
 
@@ -15,12 +22,12 @@ public class Course {
 		return evaluations;
 	}
 
-	public void addEvaluation(Evaluation evaluation){
-		evaluations.add(evaluations.size(), evaluation);
+	public void addEvaluation(Evaluation newEvaluation){
+		evaluations.add(evaluations.size(), newEvaluation);
 	}
 
-	public void addEvaluations(ArrayList<Evaluation> evaluations){
-		this.evaluations.addAll(evaluations);
+	public void addEvaluations(ArrayList<Evaluation> newEvaluations){
+		this.evaluations.addAll(newEvaluations);
 	}
 
 	// getters & setters
