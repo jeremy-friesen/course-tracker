@@ -10,13 +10,15 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import java.awt.event.ActionEvent;
+import java.time.LocalDate;
 
 public class Main extends Application {
+	GridPane gridPane = new GridPane();
+	Semester semester = new Semester();
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        GridPane gridPane = new GridPane();
-        Semester semester = new Semester();
+    	Course course = new Course();
 
         //Add course text fields
         TextField courseNameTextField = new TextField();
@@ -30,9 +32,30 @@ public class Main extends Application {
         MenuItem addTestMenuItem = new MenuItem("Test");
         addEvaluationMenuButton.getItems().addAll(addAssignmentMenuItem, addTestMenuItem);
 
-        addAssignmentMenuItem.setOnAction(e -> {
-            
-        });
+        // Add Assignment Fields/Buttons
+		TextField assignmentNameTextField = new TextField("Assignment");
+		assignmentNameTextField.setPromptText("Name(optional)");
+		TextField markWeightTextField = new TextField();
+		markWeightTextField.setPromptText("Mark Weight (%)");
+		DatePicker dueDatePicker = new DatePicker();
+		dueDatePicker.setValue(LocalDate.now());
+		Button addAssignmentButton = new Button("Add");
+		addAssignmentButton.setOnAction(e -> {
+			Assignment assignment = new Assignment();
+			assignment.setName(assignmentNameTextField.getText());
+			assignment.setMarkWeight(Double.valueOf(markWeightTextField.getText()));
+			assignment.setDueDate(dueDatePicker.getValue());
+			course.addEvaluation(assignment);
+			course.print();
+		});
+
+		// Add assignment menu item action
+        addAssignmentMenuItem.setOnAction(e ->{
+			gridPane.add(assignmentNameTextField, 0, 3);
+			gridPane.add(markWeightTextField, 0, 4);
+			gridPane.add(dueDatePicker, 0, 5);
+			gridPane.add(addAssignmentButton, 0, 6);
+		});
 
         gridPane.add(courseNameTextField, 0, 0);
         gridPane.add(courseCodeTextField, 0, 1);
@@ -41,8 +64,9 @@ public class Main extends Application {
         primaryStage.show();
     }
 
-
     public static void main(String[] args) {
         launch(args);
     }
 }
+
+

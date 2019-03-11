@@ -4,6 +4,7 @@ public class Evaluation {
 	private double markWeight;
 	private boolean isComplete = false;
 	private double mark;
+	private String name;
 
 	// Constructors
 	public Evaluation(double markWeight){
@@ -30,6 +31,8 @@ public class Evaluation {
 		return mark;
 	}
 
+	public String getName() { return name;	}
+
 	// setters
 	public void setMarkWeight(double markWeight){
 		this.markWeight = markWeight;
@@ -41,5 +44,12 @@ public class Evaluation {
 
 	public void setMark(double mark) {
 		this.mark = mark;
+	}
+
+	public void setName(String name) { this.name = name; }
+
+	// print method
+	public void print() {
+		System.out.println("super method");
 	}
 }

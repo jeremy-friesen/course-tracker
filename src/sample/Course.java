@@ -8,6 +8,10 @@ public class Course {
 	private ArrayList<Evaluation> evaluations = new ArrayList<Evaluation>();
 
 	// Constructor
+	public Course(){
+		this.courseName = "defaultCourseName";
+	}
+
 	public Course(String courseName){
 		this.courseName = courseName;
 	}
@@ -37,5 +41,17 @@ public class Course {
 
 	public void setCourseCode(String courseCode){
 		this.courseCode = courseCode;
+	}
+
+	// print method
+	public void print(){
+		System.out.print("Course: ");
+		if(courseName != null){
+			System.out.print(courseName);
+		}
+		System.out.println("\nEvaluations:");
+		for(int i = 0; i < evaluations.size(); i++){
+			evaluations.get(i).print();
+		}
 	}
 }
