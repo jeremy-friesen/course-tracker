@@ -2,7 +2,7 @@ package sample;
 
 import java.time.LocalDate;
 
-public class Test extends Evaluation {
+public class Test extends CourseComponent {
 	private LocalDate date;
 
 	// Constructors

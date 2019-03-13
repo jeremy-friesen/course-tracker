@@ -48,7 +48,7 @@ public class Main extends Application {
 			assignment.setName(evaluationNameTextField.getText());
 			assignment.setMarkWeight(Double.valueOf(markWeightTextField.getText()));
 			assignment.setDueDate(datePicker.getValue());
-			course.addEvaluation(assignment);
+			course.addCourseComponent(assignment);
 			course.print();
 		});
 
@@ -59,7 +59,7 @@ public class Main extends Application {
 			test.setName(evaluationNameTextField.getText());
 			test.setMarkWeight(Double.valueOf(markWeightTextField.getText()));
 			test.setDate(datePicker.getValue());
-			course.addEvaluation(test);
+			course.addCourseComponent(test);
 			course.print();
 		});
 

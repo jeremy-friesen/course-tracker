@@ -1,11 +1,12 @@
 package sample;
 
 import java.util.ArrayList;
+import java.time.LocalDate;
 
 public class Course {
 	private String courseName;
 	private String courseCode;
-	private ArrayList<Evaluation> evaluations = new ArrayList<Evaluation>();
+	private ArrayList<CourseComponent> CourseComponents = new ArrayList<CourseComponent>();
 
 	// Constructor
 	public Course(){
@@ -21,17 +22,18 @@ public class Course {
 		this.courseCode = courseCode;
 	}
 
-	// Evaluations get and add
-	public ArrayList<Evaluation> getEvaluations(){
-		return evaluations;
+	// CourseComponents get and add
+	public ArrayList<CourseComponent> getCourseComponent(){
+		return CourseComponents;
 	}
 
-	public void addEvaluation(Evaluation newEvaluation){
-		evaluations.add(evaluations.size(), newEvaluation);
+	public void addCourseComponent(CourseComponent newCourseComponent){
+
+		CourseComponents.add(CourseComponents.size(), newCourseComponent);
 	}
 
-	public void addEvaluations(ArrayList<Evaluation> newEvaluations){
-		this.evaluations.addAll(newEvaluations);
+	public void addCourseComponents(ArrayList<CourseComponent> newCourseComponents){
+		this.CourseComponents.addAll(newCourseComponents);
 	}
 
 	// getters & setters
@@ -49,9 +51,9 @@ public class Course {
 		if(courseName != null){
 			System.out.print(courseName);
 		}
-		System.out.println("\nEvaluations:");
-		for(int i = 0; i < evaluations.size(); i++){
-			evaluations.get(i).print();
+		System.out.println("\nCourseComponents:");
+		for(int i = 0; i < CourseComponents.size(); i++){
+			CourseComponents.get(i).print();
 		}
 	}
 

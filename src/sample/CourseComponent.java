@@ -1,22 +1,25 @@
 package sample;
 
-public class Evaluation {
+import java.time.LocalDate;
+
+public class CourseComponent {
 	private double markWeight;
 	private boolean isComplete = false;
 	private double mark;
 	private String name;
+	private LocalDate date;
 
 	// Constructors
-	public Evaluation(double markWeight){
+	public CourseComponent(double markWeight){
 		this.markWeight = markWeight;
 	}
 
-	public Evaluation(double markWeight, boolean isComplete){
+	public CourseComponent(double markWeight, boolean isComplete){
 		this.markWeight = markWeight;
 		this.isComplete = isComplete;
 	}
 
-	public Evaluation(){}
+	public CourseComponent(){}
 
 	// getters
 	public double getMarkWeight() {
@@ -47,6 +50,10 @@ public class Evaluation {
 	}
 
 	public void setName(String name) { this.name = name; }
+
+	public void setDate(LocalDate date){this.date = date;}
+
+	public LocalDate getDate(){return this.date;}
 
 	// print method
 	public void print() {
