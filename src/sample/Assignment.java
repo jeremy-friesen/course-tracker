@@ -31,11 +31,9 @@ public class Assignment extends CourseComponent {
 	}
 
 	// date get & set methods
-	public LocalDate getDueDate() {
-		return dueDate;
-	}
+	public LocalDate getDate() { return dueDate; }
 
-	public void setDueDate(LocalDate duDate) {
+	public void setDueDate(LocalDate dueDate) {
 		this.dueDate = dueDate;
 	}
 

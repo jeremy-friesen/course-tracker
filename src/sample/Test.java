@@ -32,7 +32,7 @@ public class Test extends CourseComponent {
 
 	// date get & set methods
 	public LocalDate getDate() {
-		return date;
+		return this.date;
 	}
 
 	public void setDate(LocalDate date) {

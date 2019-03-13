@@ -55,6 +55,11 @@ public class CourseComponent {
 
 	public LocalDate getDate(){return this.date;}
 
+	//@Override
+	public int compareTo(CourseComponent o1, CourseComponent o2) {
+		return o1.getDate().compareTo(o1.getDate());
+	}
+
 	// print method
 	public void print() {
 		System.out.println("super method");

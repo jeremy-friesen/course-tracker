@@ -2,6 +2,8 @@ package sample;
 
 import java.util.ArrayList;
 import java.time.LocalDate;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class Course {
 	private String courseName;
@@ -28,8 +30,8 @@ public class Course {
 	}
 
 	public void addCourseComponent(CourseComponent newCourseComponent){
-
 		CourseComponents.add(CourseComponents.size(), newCourseComponent);
+		CourseComponents.sort(Comparator.comparing(o -> o.getDate()));
 	}
 
 	public void addCourseComponents(ArrayList<CourseComponent> newCourseComponents){
