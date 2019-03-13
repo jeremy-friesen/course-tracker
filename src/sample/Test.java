@@ -44,6 +44,6 @@ public class Test extends Evaluation {
 		System.out.println("Test " + getName() + ":");
 		System.out.println("\t" + "Test Date: " + date.toString());
 		System.out.println("\t" + "Mark Weight: " + getMarkWeight() + "%");
-		System.out.print("\t" + "Mark: " + getMark() + "%");
+		System.out.println("\t" + "Mark: " + getMark() + "%");
 	}
 }

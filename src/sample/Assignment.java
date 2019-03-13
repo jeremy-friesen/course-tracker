@@ -44,6 +44,6 @@ public class Assignment extends Evaluation {
 		System.out.println("Assignment " + getName() + ":");
 		System.out.println("\t" + "Due Date: " + dueDate.toString());
 		System.out.println("\t" + "Mark Weight: " + getMarkWeight() + "%");
-		System.out.print("\t" + "Mark: " + getMark() + "%");
+		System.out.println("\t" + "Mark: " + getMark() + "%");
 	}
 }
