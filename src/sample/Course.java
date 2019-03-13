@@ -1,5 +1,11 @@
 package sample;
 
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
+
+import java.awt.*;
 import java.util.ArrayList;
 import java.time.LocalDate;
 
@@ -57,5 +63,14 @@ public class Course {
 		}
 	}
 
-	//
+	// display pane method
+	public Pane generateDisplayPane(){
+		final HBox hbox = new HBox();
+		hbox.getChildren().add(new Text(courseName + ":"));
+		for(int i = 0; i < evaluations.size(); i++){
+			hbox.getChildren().add(new Text(evaluations.get(i).toString()));
+		}
+		hbox.setStyle("-fx-border-color: red;");
+		return hbox ;
+	}
 }

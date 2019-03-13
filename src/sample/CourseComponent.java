@@ -59,4 +59,12 @@ public class CourseComponent {
 	public void print() {
 		System.out.println("super method");
 	}
+
+	public String toString(){
+		String string = "\tEvaluation " + getName() + ":";
+		//string = string + "\n\t\t" + "Due Date: " + dueDate.toString());
+		string = string + "\n\t\t" + "Mark Weight: " + getMarkWeight() + "%";
+		string = string + "\n\t\t" + "Mark: " + getMark() + "%";
+		return string;
+	}
 }
