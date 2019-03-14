@@ -61,7 +61,7 @@ public class CourseComponent {
 	}
 
 	public String toString(){
-		String string = "\tEvaluation " + getName() + ":";
+		String string = "\tCourseComponent " + getName() + ":";
 		//string = string + "\n\t\t" + "Due Date: " + dueDate.toString());
 		string = string + "\n\t\t" + "Mark Weight: " + getMarkWeight() + "%";
 		string = string + "\n\t\t" + "Mark: " + getMark() + "%";

@@ -27,14 +27,14 @@ public class Main extends Application {
         TextField courseCodeTextField = new TextField();
         courseCodeTextField.setPromptText("Course Code");
 
-        MenuButton addEvaluationMenuButton = new MenuButton("Add Evaluation");
+        MenuButton addCourseComponentMenuButton = new MenuButton("Add CourseComponent");
         MenuItem addAssignmentMenuItem = new MenuItem("Assignment");
         MenuItem addTestMenuItem = new MenuItem("Test");
-        addEvaluationMenuButton.getItems().addAll(addAssignmentMenuItem, addTestMenuItem);
+        addCourseComponentMenuButton.getItems().addAll(addAssignmentMenuItem, addTestMenuItem);
 
-        // Add Evaluation Fields/Buttons
-		TextField evaluationNameTextField = new TextField("Assignment");
-		evaluationNameTextField.setPromptText("Name(optional)");
+        // Add CourseComponent Fields/Buttons
+		TextField courseComponentNameTextField = new TextField("Assignment");
+		courseComponentNameTextField.setPromptText("Name(optional)");
 		TextField markWeightTextField = new TextField("0");
 		markWeightTextField.setPromptText("Mark Weight (%)");
 		DatePicker datePicker = new DatePicker();
@@ -45,10 +45,10 @@ public class Main extends Application {
 		Button addAssignmentButton = new Button("Add");
 		addAssignmentButton.setOnAction(e -> {
 			Assignment assignment = new Assignment();
-			assignment.setName(evaluationNameTextField.getText());
+			assignment.setName(courseComponentNameTextField.getText());
 			assignment.setMarkWeight(Double.valueOf(markWeightTextField.getText()));
 			assignment.setDueDate(datePicker.getValue());
-			course.addEvaluation(assignment);
+			course.addCourseComponent(assignment);
 			course.print();
 		});
 
@@ -56,18 +56,18 @@ public class Main extends Application {
 		Button addTestButton = new Button("Add");
 		addTestButton.setOnAction(e -> {
 			Test test = new Test();
-			test.setName(evaluationNameTextField.getText());
+			test.setName(courseComponentNameTextField.getText());
 			test.setMarkWeight(Double.valueOf(markWeightTextField.getText()));
 			test.setDate(datePicker.getValue());
-			course.addEvaluation(test);
+			course.addCourseComponent(test);
 			course.print();
 		});
 
 		// Add assignment menu item action
         addAssignmentMenuItem.setOnAction(e ->{
-			addEvaluationMenuButton.setText("Assignment");
-			if(!gridPane.getChildren().contains(evaluationNameTextField)) {
-				gridPane.add(evaluationNameTextField, 0, 3);
+			addCourseComponentMenuButton.setText("Assignment");
+			if(!gridPane.getChildren().contains(courseComponentNameTextField)) {
+				gridPane.add(courseComponentNameTextField, 0, 3);
 				gridPane.add(markWeightTextField, 0, 4);
 				gridPane.add(datePicker, 0, 5);
 			}
@@ -77,9 +77,9 @@ public class Main extends Application {
 
 		// Add test menu item action
 		addTestMenuItem.setOnAction(e ->{
-			addEvaluationMenuButton.setText("Test");
-			if(!gridPane.getChildren().contains(evaluationNameTextField)) {
-				gridPane.add(evaluationNameTextField, 0, 3);
+			addCourseComponentMenuButton.setText("Test");
+			if(!gridPane.getChildren().contains(courseComponentNameTextField)) {
+				gridPane.add(courseComponentNameTextField, 0, 3);
 				gridPane.add(markWeightTextField, 0, 4);
 				gridPane.add(datePicker, 0, 5);
 			}
@@ -89,7 +89,7 @@ public class Main extends Application {
 
         gridPane.add(courseNameTextField, 0, 0);
         gridPane.add(courseCodeTextField, 0, 1);
-        gridPane.add(addEvaluationMenuButton, 0, 2);
+        gridPane.add(addCourseComponentMenuButton, 0, 2);
         Scene scene = new Scene(gridPane, 300, 275);
         primaryStage.setScene(scene);
         primaryStage.show();
