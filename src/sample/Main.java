@@ -8,6 +8,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import javafx.application.Platform;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.SeparatorMenuItem;
+import javafx.scene.layout.BorderPane;
 
 import java.awt.event.ActionEvent;
 import java.time.LocalDate;
@@ -19,8 +25,31 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
     	Course course = new Course();
+    	Menu filemenu = new Menu ("File");
+    	MenuBar menubar = new MenuBar();
+		Menu editmenu= new Menu("Edit");
 
-        //Add course text fields
+    	MenuItem save = new MenuItem("Save");
+    	filemenu.getItems().add(save);
+    	MenuItem saveas = new MenuItem("Save As...");
+    	filemenu.getItems().add(saveas);
+    	MenuItem exit = new MenuItem("Exit");
+    	filemenu.getItems().add(exit);
+    	exit.setOnAction(e-> Platform.exit());
+
+		MenuItem cut= new MenuItem("Cut");
+		editmenu.getItems().add(cut);
+		MenuItem copy= new MenuItem("Copy");
+		editmenu.getItems().add(copy);
+		MenuItem paste= new MenuItem("Paste");
+		editmenu.getItems().add(paste);
+
+		menubar.getMenus().addAll(filemenu, editmenu);
+
+		BorderPane pane = new BorderPane();
+		pane.setTop(menubar);
+
+		//Add course text fields
         TextField courseNameTextField = new TextField();
         courseNameTextField.setPromptText("Course Name");
 
@@ -90,7 +119,8 @@ public class Main extends Application {
         gridPane.add(courseNameTextField, 0, 0);
         gridPane.add(courseCodeTextField, 0, 1);
         gridPane.add(addCourseComponentMenuButton, 0, 2);
-        Scene scene = new Scene(gridPane, 300, 275);
+        pane.setCenter(gridPane);
+        Scene scene = new Scene(pane, 300, 275);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
