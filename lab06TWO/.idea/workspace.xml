@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="a38dabd9-744e-47be-b56c-151380ccff9b" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../AssignmentQ1/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AssignmentQ1/.idea/description.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AssignmentQ1/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AssignmentQ1/.idea/gradle.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AssignmentQ1/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AssignmentQ1/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AssignmentQ1/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AssignmentQ1/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AssignmentQ1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../AssignmentQ1/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AssignmentQ1/AssignmentQ1.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AssignmentQ1/out/production/AssignmentQ1/sample/Controller.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AssignmentQ1/out/production/AssignmentQ1/sample/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AssignmentQ1/out/production/AssignmentQ1/sample/sample.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AssignmentQ1/src/sample/Controller.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AssignmentQ1/src/sample/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AssignmentQ1/src/sample/sample.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AssignmentQ2/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AssignmentQ2/.idea/description.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AssignmentQ2/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../AssignmentQ2/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AssignmentQ2/.idea/gradle.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AssignmentQ2/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../AssignmentQ2/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AssignmentQ2/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../AssignmentQ2/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AssignmentQ2/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AssignmentQ2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../AssignmentQ2/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AssignmentQ2/AssignmentQ2.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AssignmentQ2/out/production/AssignmentQ2/sample/Controller.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AssignmentQ2/out/production/AssignmentQ2/sample/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AssignmentQ2/out/production/AssignmentQ2/sample/sample.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AssignmentQ2/src/sample/Controller.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AssignmentQ2/src/sample/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AssignmentQ2/src/sample/sample.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AssignmentQ3/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AssignmentQ3/.idea/description.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AssignmentQ3/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AssignmentQ3/.idea/gradle.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AssignmentQ3/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AssignmentQ3/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AssignmentQ3/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AssignmentQ3/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AssignmentQ3/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../AssignmentQ3/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AssignmentQ3/AssignmentQ3.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AssignmentQ3/out/production/AssignmentQ3/sample/Controller.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AssignmentQ3/out/production/AssignmentQ3/sample/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AssignmentQ3/out/production/AssignmentQ3/sample/sample.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AssignmentQ3/src/sample/Controller.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AssignmentQ3/src/sample/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AssignmentQ3/src/sample/sample.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AssignmentQ4/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AssignmentQ4/.idea/deployment.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AssignmentQ4/.idea/description.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AssignmentQ4/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AssignmentQ4/.idea/gradle.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AssignmentQ4/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AssignmentQ4/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AssignmentQ4/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AssignmentQ4/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AssignmentQ4/.idea/webServers.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AssignmentQ4/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../AssignmentQ4/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AssignmentQ4/AssignmentQ4.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AssignmentQ4/README.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AssignmentQ4/chars.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AssignmentQ4/chars2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AssignmentQ4/out/production/AssignmentQ4/sample/Controller.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AssignmentQ4/out/production/AssignmentQ4/sample/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AssignmentQ4/out/production/AssignmentQ4/sample/sample.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AssignmentQ4/src/sample/Controller.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AssignmentQ4/src/sample/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AssignmentQ4/src/sample/sample.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../csci2020u" beforeDir="false" afterPath="$PROJECT_DIR$/../csci2020u" afterDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/out/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="85" />
+    <option name="y" value="722" />
+    <option name="width" value="3500" />
+    <option name="height" value="1960" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="lab06TWO" type="b2602c69:ProjectViewProjectNode" />
+              <item name="lab06TWO" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../lab06" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a38dabd9-744e-47be-b56c-151380ccff9b" name="Default Changelist" comment="" />
+      <created>1551972040529</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1551972040529</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="34" y="289" width="1400" height="784" extended-state="0" />
+    <layout>
+      <window_info id="Image Layers" />
+      <window_info id="Designer" />
+      <window_info id="UI Designer" />
+      <window_info id="Capture Tool" />
+      <window_info id="Favorites" side_tool="true" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27719823" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Version Control" />
+      <window_info anchor="bottom" id="Terminal" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="right" id="Palette" />
+      <window_info anchor="right" id="Theme Preview" />
+      <window_info anchor="right" id="Maven" />
+      <window_info anchor="right" id="Capture Analysis" />
+      <window_info anchor="right" id="Palette&#9;" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+  </component>
+</project>
