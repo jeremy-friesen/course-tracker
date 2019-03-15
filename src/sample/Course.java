@@ -1,9 +1,11 @@
 package sample;
 
+import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 import java.awt.*;
 import java.io.Serializable;
@@ -50,6 +52,8 @@ public class Course implements Serializable {
 		return courseCode;
 	}
 
+	public void setCourseName(String courseName) {this.courseName = courseName;}
+
 	public void setCourseCode(String courseCode){
 		this.courseCode = courseCode;
 	}
@@ -67,13 +71,19 @@ public class Course implements Serializable {
 	}
 
 	// display pane method
-	public Pane generateDisplayPane(){
+	public void generateDisplayPane(){
+		Stage courseInfoWindow = new Stage();
 		final HBox hbox = new HBox();
 		hbox.getChildren().add(new Text(courseName + ":"));
+		hbox.getChildren().add(new Text(courseCode + ":"));
 		for(int i = 0; i < courseComponents.size(); i++){
 			hbox.getChildren().add(new Text(courseComponents.get(i).toString()));
 		}
+
 		hbox.setStyle("-fx-border-color: red;");
-		return hbox ;
+
+		Scene scene2 = new Scene(hbox);
+		courseInfoWindow.setScene(scene2);
+		courseInfoWindow.show();
 	}
 }

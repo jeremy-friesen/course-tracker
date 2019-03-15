@@ -70,6 +70,14 @@ public class Main extends Application {
 		datePicker.setPromptText("Date");
 		datePicker.setValue(LocalDate.now());
 
+		// Course "Add" button
+		Button submitCourseButton = new Button("Submit Course Name + Code");
+		submitCourseButton.setOnAction(e -> {
+			course.setCourseName(courseNameTextField.getText());
+			course.setCourseCode(courseCodeTextField.getText());
+			course.print();
+		});
+
 		// assignment "Add" button
 		Button addAssignmentButton = new Button("Add");
 		addAssignmentButton.setOnAction(e -> {
@@ -79,6 +87,7 @@ public class Main extends Application {
 			assignment.setDate(datePicker.getValue());
 			course.addCourseComponent(assignment);
 			course.print();
+			course.generateDisplayPane();
 		});
 
 		// test "Add" button
@@ -90,6 +99,7 @@ public class Main extends Application {
 			test.setDate(datePicker.getValue());
 			course.addCourseComponent(test);
 			course.print();
+			course.generateDisplayPane();
 		});
 
 		// Add assignment menu item action
@@ -119,6 +129,7 @@ public class Main extends Application {
         gridPane.add(courseNameTextField, 0, 0);
         gridPane.add(courseCodeTextField, 0, 1);
         gridPane.add(addCourseComponentMenuButton, 0, 2);
+		gridPane.add(submitCourseButton, 0, 7);
         pane.setCenter(gridPane);
         Scene scene = new Scene(pane, 300, 275);
         primaryStage.setScene(scene);
