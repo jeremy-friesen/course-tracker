@@ -76,7 +76,7 @@ public class Main extends Application {
 			Assignment assignment = new Assignment();
 			assignment.setName(courseComponentNameTextField.getText());
 			assignment.setMarkWeight(Double.valueOf(markWeightTextField.getText()));
-			assignment.setDueDate(datePicker.getValue());
+			assignment.setDate(datePicker.getValue());
 			course.addCourseComponent(assignment);
 			course.print();
 		});

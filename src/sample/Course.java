@@ -8,6 +8,7 @@ import javafx.scene.text.Text;
 import java.awt.*;
 import java.util.ArrayList;
 import java.time.LocalDate;
+import java.util.Comparator;
 
 public class Course {
 	private String courseName;
@@ -28,14 +29,15 @@ public class Course {
 		this.courseCode = courseCode;
 	}
 
-	// CourseComponents get and add
-	public ArrayList<CourseComponent> getCourseComponent(){
-		return courseComponents;
-	}
+				// CourseComponents get and add
+		public ArrayList<CourseComponent> getCourseComponent(){
+			return courseComponents;
+		}
 
-	public void addCourseComponent(CourseComponent newCourseComponent){
+		public void addCourseComponent(CourseComponent newCourseComponent){
 
-		courseComponents.add(courseComponents.size(), newCourseComponent);
+			courseComponents.add(courseComponents.size(), newCourseComponent);
+			courseComponents.sort(Comparator.comparing(o -> o.getDate()));
 	}
 
 	public void addCourseComponents(ArrayList<CourseComponent> newCourseComponents){

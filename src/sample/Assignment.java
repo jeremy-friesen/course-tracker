@@ -33,7 +33,7 @@ public class Assignment extends CourseComponent {
 	// date get & set methods
 	public LocalDate getDate() { return dueDate; }
 
-	public void setDueDate(LocalDate dueDate) {
+	public void setDate(LocalDate dueDate) {
 		this.dueDate = dueDate;
 	}
 
