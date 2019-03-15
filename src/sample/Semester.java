@@ -1,8 +1,9 @@
 package sample;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Semester {
+public class Semester implements Serializable {
 	private ArrayList<Course> courses = new ArrayList<Course>();
 
 	// Constructors
@@ -20,5 +21,12 @@ public class Semester {
 
 	public ArrayList<Course> getCourses(){
 		return courses;
+	}
+
+	public void print(){
+		System.out.println("semester object");
+		for(int i = 0; i < courses.size(); i++){
+			courses.get(i).print();
+		}
 	}
 }

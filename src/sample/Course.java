@@ -6,11 +6,12 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
 import java.awt.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.time.LocalDate;
 import java.util.Comparator;
 
-public class Course {
+public class Course implements Serializable {
 	private String courseName;
 	private String courseCode;
 	private ArrayList<CourseComponent> courseComponents = new ArrayList<CourseComponent>();
