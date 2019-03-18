@@ -1,11 +1,15 @@
 package sample;
 
+import javafx.geometry.Insets;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+
 import java.time.LocalDate;
 
 public class CourseComponent {
 	private double markWeight;
 	private boolean isComplete = false;
-	private double mark;
+	private double mark = 0.0;
 	private String name;
 	private LocalDate date;
 
@@ -36,6 +40,8 @@ public class CourseComponent {
 
 	public String getName() { return name;	}
 
+	public LocalDate getDate(){return date;}
+
 	// setters
 	public void setMarkWeight(double markWeight){
 		this.markWeight = markWeight;
@@ -53,8 +59,6 @@ public class CourseComponent {
 
 	public void setDate(LocalDate date){this.date = date;}
 
-	public LocalDate getDate(){return this.date;}
-
 	//@Override
 	public int compareTo(CourseComponent o1, CourseComponent o2) {
 		return o1.getDate().compareTo(o1.getDate());
@@ -62,7 +66,10 @@ public class CourseComponent {
 
 	// print method
 	public void print() {
-		System.out.println("super method");
+		System.out.println("\tCourseComponent " + getName() + ":");
+		//System.out.println("\n\t\t" + "Due Date: " + dueDate.toString());
+		System.out.println("\t\t" + "Mark Weight: " + getMarkWeight() + "%");
+		System.out.println("\n\t\t" + "Mark: " + getMark() + "%");
 	}
 
 	public String toString(){
@@ -71,5 +78,15 @@ public class CourseComponent {
 		string = string + "\n\t\t" + "Mark Weight: " + getMarkWeight() + "%";
 		string = string + "\n\t\t" + "Mark: " + getMark() + "%";
 		return string;
+	}
+
+	public VBox toVBox(){
+		final VBox vbox = new VBox();
+		vbox.setPadding(new Insets(5, 5, 5, 5));
+		vbox.getChildren().add(new Text(name + ":"));
+		vbox.getChildren().add(new Text("Date: " + date.toString()));
+		vbox.getChildren().add(new Text("Mark weight: " + markWeight));
+		vbox.setStyle("-fx-border-color: purple;");
+		return vbox;
 	}
 }

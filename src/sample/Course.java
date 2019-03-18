@@ -1,9 +1,11 @@
 package sample;
 
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -32,15 +34,14 @@ public class Course implements Serializable {
 		this.courseCode = courseCode;
 	}
 
-				// CourseComponents get and add
-		public ArrayList<CourseComponent> getCourseComponent(){
-			return courseComponents;
-		}
+	// CourseComponents get and add
+	public ArrayList<CourseComponent> getCourseComponent(){
+		return courseComponents;
+	}
 
-		public void addCourseComponent(CourseComponent newCourseComponent){
-
-			courseComponents.add(courseComponents.size(), newCourseComponent);
-			courseComponents.sort(Comparator.comparing(o -> o.getDate()));
+	public void addCourseComponent(CourseComponent newCourseComponent){
+		courseComponents.add(courseComponents.size(), newCourseComponent);
+		courseComponents.sort(Comparator.comparing(c -> c.getDate()));
 	}
 
 	public void addCourseComponents(ArrayList<CourseComponent> newCourseComponents){
@@ -71,19 +72,16 @@ public class Course implements Serializable {
 	}
 
 	// display pane method
-	public void generateDisplayPane(){
-		Stage courseInfoWindow = new Stage();
-		final HBox hbox = new HBox();
-		hbox.getChildren().add(new Text(courseName + ":"));
-		hbox.getChildren().add(new Text(courseCode + ":"));
+	public VBox toVBox(){
+		final VBox vbox = new VBox();
+		vbox.setPadding(new Insets(5, 5, 5, 5));
+		vbox.getChildren().add(new Text(courseName + ":"));
+		vbox.getChildren().add(new Text("Course code: " + courseCode));
+		vbox.getChildren().add(new Text("Components:"));
 		for(int i = 0; i < courseComponents.size(); i++){
-			hbox.getChildren().add(new Text(courseComponents.get(i).toString()));
+			vbox.getChildren().add(courseComponents.get(i).toVBox());
 		}
-
-		hbox.setStyle("-fx-border-color: red;");
-
-		Scene scene2 = new Scene(hbox);
-		courseInfoWindow.setScene(scene2);
-		courseInfoWindow.show();
+		vbox.setStyle("-fx-border-color: green;");
+		return vbox;
 	}
 }

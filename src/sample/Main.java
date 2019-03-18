@@ -6,7 +6,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.application.Platform;
 import javafx.scene.control.Menu;
@@ -14,28 +18,59 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.time.LocalDate;
 
 public class Main extends Application {
-	GridPane gridPane = new GridPane();
+	BorderPane mainPane = new BorderPane();
+	GridPane mainGridPane = new GridPane();
 	Semester semester = new Semester();
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-    	Course course = new Course();
-    	Menu filemenu = new Menu ("File");
-    	MenuBar menubar = new MenuBar();
+    	System.out.println(mainPane.getHeight());
+    	TabPane leftMenu = new TabPane();
+    	Tab addCourseTab = new Tab();
+		addCourseTab.setText("Add Course");
+		addCourseTab.setContent(addCoursePane());
+    	Tab otherTab = new Tab();
+		otherTab.setText("other");
+		otherTab.setContent(new Rectangle(300,1080, Color.LIGHTSTEELBLUE));
+    	leftMenu.getTabs().addAll(addCourseTab, otherTab);
+		mainGridPane.add(leftMenu, 0,0);
+
+    	Course course = new Course("Software Systems", "CSCI-2020U");
+    	course.addCourseComponent(new Assignment(10.0, LocalDate.of(2019, 03, 25), "Final Project"));
+		course.addCourseComponent(new Test(40.0, LocalDate.of(2019, 04, 10), "Final Exam"));
+		semester.addCourse(course);
+		semester.addCourse(course);
+		semester.addCourse(course);
+
+
+    	mainGridPane.add(semester.getCoursesGridPane(), 1, 0);
+		mainPane.setTop(menuBar());
+		mainPane.setCenter(mainGridPane);
+		Scene scene = new Scene(mainPane, 950, 600);
+		primaryStage.setScene(scene);
+		primaryStage.show();
+    }
+
+    private MenuBar menuBar(){
+		Menu filemenu = new Menu ("File");
+		MenuBar bar = new MenuBar();
 		Menu editmenu= new Menu("Edit");
 
-    	MenuItem save = new MenuItem("Save");
-    	filemenu.getItems().add(save);
-    	MenuItem saveas = new MenuItem("Save As...");
-    	filemenu.getItems().add(saveas);
-    	MenuItem exit = new MenuItem("Exit");
-    	filemenu.getItems().add(exit);
-    	exit.setOnAction(e-> Platform.exit());
+		MenuItem save = new MenuItem("Save");
+		filemenu.getItems().add(save);
+		MenuItem saveas = new MenuItem("Save As...");
+		filemenu.getItems().add(saveas);
+		MenuItem exit = new MenuItem("Exit");
+		filemenu.getItems().add(exit);
+		exit.setOnAction(e-> Platform.exit());
 
 		MenuItem cut= new MenuItem("Cut");
 		editmenu.getItems().add(cut);
@@ -44,24 +79,26 @@ public class Main extends Application {
 		MenuItem paste= new MenuItem("Paste");
 		editmenu.getItems().add(paste);
 
-		menubar.getMenus().addAll(filemenu, editmenu);
+		bar.getMenus().addAll(filemenu, editmenu);
+		return  bar;
+	}
 
-		BorderPane pane = new BorderPane();
-		pane.setTop(menubar);
+	private GridPane addCoursePane(){
+    	GridPane gridPane = new GridPane();
+    	Course course = new Course();
 
-		//Add course text fields
-        TextField courseNameTextField = new TextField();
-        courseNameTextField.setPromptText("Course Name");
+		TextField courseNameTextField = new TextField();
+		courseNameTextField.setPromptText("Course Name");
 
-        TextField courseCodeTextField = new TextField();
-        courseCodeTextField.setPromptText("Course Code");
+		TextField courseCodeTextField = new TextField();
+		courseCodeTextField.setPromptText("Course Code");
 
-        MenuButton addCourseComponentMenuButton = new MenuButton("Add CourseComponent");
-        MenuItem addAssignmentMenuItem = new MenuItem("Assignment");
-        MenuItem addTestMenuItem = new MenuItem("Test");
-        addCourseComponentMenuButton.getItems().addAll(addAssignmentMenuItem, addTestMenuItem);
+		MenuButton addCourseComponentMenuButton = new MenuButton("Add CourseComponent");
+		MenuItem addAssignmentMenuItem = new MenuItem("Assignment");
+		MenuItem addTestMenuItem = new MenuItem("Test");
+		addCourseComponentMenuButton.getItems().addAll(addAssignmentMenuItem, addTestMenuItem);
 
-        // Add CourseComponent Fields/Buttons
+		// Add CourseComponent Fields/Buttons
 		TextField courseComponentNameTextField = new TextField("Assignment");
 		courseComponentNameTextField.setPromptText("Name(optional)");
 		TextField markWeightTextField = new TextField("0");
@@ -76,6 +113,8 @@ public class Main extends Application {
 			course.setCourseName(courseNameTextField.getText());
 			course.setCourseCode(courseCodeTextField.getText());
 			course.print();
+			semester.addCourse(course);
+			mainGridPane.add(semester.getCoursesGridPane(), 1, 0);
 		});
 
 		// assignment "Add" button
@@ -87,7 +126,6 @@ public class Main extends Application {
 			assignment.setDate(datePicker.getValue());
 			course.addCourseComponent(assignment);
 			course.print();
-			course.generateDisplayPane();
 		});
 
 		// test "Add" button
@@ -99,11 +137,10 @@ public class Main extends Application {
 			test.setDate(datePicker.getValue());
 			course.addCourseComponent(test);
 			course.print();
-			course.generateDisplayPane();
 		});
 
 		// Add assignment menu item action
-        addAssignmentMenuItem.setOnAction(e ->{
+		addAssignmentMenuItem.setOnAction(e ->{
 			addCourseComponentMenuButton.setText("Assignment");
 			if(!gridPane.getChildren().contains(courseComponentNameTextField)) {
 				gridPane.add(courseComponentNameTextField, 0, 3);
@@ -126,16 +163,14 @@ public class Main extends Application {
 			gridPane.add(addTestButton, 0, 6);
 		});
 
-        gridPane.add(courseNameTextField, 0, 0);
-        gridPane.add(courseCodeTextField, 0, 1);
-        gridPane.add(addCourseComponentMenuButton, 0, 2);
+		gridPane.add(courseNameTextField, 0, 0);
+		gridPane.add(courseCodeTextField, 0, 1);
+		gridPane.add(addCourseComponentMenuButton, 0, 2);
 		gridPane.add(submitCourseButton, 0, 7);
-        pane.setCenter(gridPane);
-        Scene scene = new Scene(pane, 300, 275);
-        primaryStage.setScene(scene);
-        primaryStage.show();
-    }
-	// Test
+
+		return gridPane;
+	}
+
     public static void main(String[] args) {
         launch(args);
     }
