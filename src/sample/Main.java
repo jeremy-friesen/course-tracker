@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.application.Platform;
@@ -30,26 +31,29 @@ public class Main extends Application {
 	GridPane mainGridPane = new GridPane();
 	Semester semester = new Semester();
 
+	Tab addCourseTab = new Tab();
+	Tab componentsTab = new Tab();
+
     @Override
     public void start(Stage primaryStage) throws Exception{
     	System.out.println(mainPane.getHeight());
     	TabPane leftMenu = new TabPane();
-    	Tab addCourseTab = new Tab();
-		addCourseTab.setText("Add Course");
+    	addCourseTab.setText("Add Course");
 		addCourseTab.setContent(addCoursePane());
-    	Tab otherTab = new Tab();
-		otherTab.setText("other");
-		otherTab.setContent(new Rectangle(300,1080, Color.LIGHTSTEELBLUE));
-    	leftMenu.getTabs().addAll(addCourseTab, otherTab);
+		componentsTab.setText("Components by Date");
+		componentsTab.setContent(semester.getCourseComponentsByDateVBox());
+    	leftMenu.getTabs().addAll(addCourseTab, componentsTab);
 		mainGridPane.add(leftMenu, 0,0);
 
+		//EXAMPLE CODE: remove eventually
     	Course course = new Course("Software Systems", "CSCI-2020U");
     	course.addCourseComponent(new Assignment(10.0, LocalDate.of(2019, 03, 25), "Final Project"));
 		course.addCourseComponent(new Test(40.0, LocalDate.of(2019, 04, 10), "Final Exam"));
 		semester.addCourse(course);
 		semester.addCourse(course);
 		semester.addCourse(course);
-
+		componentsTab.setContent(semester.getCourseComponentsByDateVBox());
+		//EXAMPLE CODE ENDS
 
     	mainGridPane.add(semester.getCoursesGridPane(), 1, 0);
 		mainPane.setTop(menuBar());
@@ -115,6 +119,7 @@ public class Main extends Application {
 			course.print();
 			semester.addCourse(course);
 			mainGridPane.add(semester.getCoursesGridPane(), 1, 0);
+			componentsTab.setContent(semester.getCourseComponentsByDateVBox());
 		});
 
 		// assignment "Add" button

@@ -35,7 +35,7 @@ public class Course implements Serializable {
 	}
 
 	// CourseComponents get and add
-	public ArrayList<CourseComponent> getCourseComponent(){
+	public ArrayList<CourseComponent> getCourseComponents(){
 		return courseComponents;
 	}
 
@@ -49,6 +49,10 @@ public class Course implements Serializable {
 	}
 
 	// getters & setters
+	public String getCourseName(){
+		return courseName;
+	}
+
 	public String getCourseCode(){
 		return courseCode;
 	}
