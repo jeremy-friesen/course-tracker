@@ -3,6 +3,7 @@ package sample;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -46,6 +47,7 @@ public class Main extends Application {
 		mainGridPane.add(leftMenu, 0,0);
 
 		//EXAMPLE CODE: remove eventually
+/*
     	Course course = new Course("Software Systems", "CSCI-2020U");
     	course.addCourseComponent(new Assignment(10.0, LocalDate.of(2019, 03, 25), "Final Project"));
 		course.addCourseComponent(new Test(40.0, LocalDate.of(2019, 04, 10), "Final Exam"));
@@ -53,9 +55,14 @@ public class Main extends Application {
 		semester.addCourse(course);
 		semester.addCourse(course);
 		componentsTab.setContent(semester.getCourseComponentsByDateVBox());
+
 		//EXAMPLE CODE ENDS
+*/
+
+
 
     	mainGridPane.add(semester.getCoursesGridPane(), 1, 0);
+
 		mainPane.setTop(menuBar());
 		mainPane.setCenter(mainGridPane);
 		Scene scene = new Scene(mainPane, 950, 600);
@@ -75,7 +82,6 @@ public class Main extends Application {
 		MenuItem exit = new MenuItem("Exit");
 		filemenu.getItems().add(exit);
 		exit.setOnAction(e-> Platform.exit());
-
 		MenuItem cut= new MenuItem("Cut");
 		editmenu.getItems().add(cut);
 		MenuItem copy= new MenuItem("Copy");
@@ -89,7 +95,6 @@ public class Main extends Application {
 
 	private GridPane addCoursePane(){
     	GridPane gridPane = new GridPane();
-    	Course course = new Course();
 
 		TextField courseNameTextField = new TextField();
 		courseNameTextField.setPromptText("Course Name");
@@ -97,23 +102,11 @@ public class Main extends Application {
 		TextField courseCodeTextField = new TextField();
 		courseCodeTextField.setPromptText("Course Code");
 
-		MenuButton addCourseComponentMenuButton = new MenuButton("Add CourseComponent");
-		MenuItem addAssignmentMenuItem = new MenuItem("Assignment");
-		MenuItem addTestMenuItem = new MenuItem("Test");
-		addCourseComponentMenuButton.getItems().addAll(addAssignmentMenuItem, addTestMenuItem);
-
-		// Add CourseComponent Fields/Buttons
-		TextField courseComponentNameTextField = new TextField("Assignment");
-		courseComponentNameTextField.setPromptText("Name(optional)");
-		TextField markWeightTextField = new TextField("0");
-		markWeightTextField.setPromptText("Mark Weight (%)");
-		DatePicker datePicker = new DatePicker();
-		datePicker.setPromptText("Date");
-		datePicker.setValue(LocalDate.now());
-
 		// Course "Add" button
-		Button submitCourseButton = new Button("Submit Course Name + Code");
+		Button submitCourseButton = new Button("Submit Course");
 		submitCourseButton.setOnAction(e -> {
+			Course course = new Course();
+			GridPane content = semester.getCoursesGridPane();
 			course.setCourseName(courseNameTextField.getText());
 			course.setCourseCode(courseCodeTextField.getText());
 			course.print();
@@ -122,59 +115,25 @@ public class Main extends Application {
 			componentsTab.setContent(semester.getCourseComponentsByDateVBox());
 		});
 
-		// assignment "Add" button
-		Button addAssignmentButton = new Button("Add");
-		addAssignmentButton.setOnAction(e -> {
-			Assignment assignment = new Assignment();
-			assignment.setName(courseComponentNameTextField.getText());
-			assignment.setMarkWeight(Double.valueOf(markWeightTextField.getText()));
-			assignment.setDate(datePicker.getValue());
-			course.addCourseComponent(assignment);
-			course.print();
-		});
 
-		// test "Add" button
-		Button addTestButton = new Button("Add");
-		addTestButton.setOnAction(e -> {
-			Test test = new Test();
-			test.setName(courseComponentNameTextField.getText());
-			test.setMarkWeight(Double.valueOf(markWeightTextField.getText()));
-			test.setDate(datePicker.getValue());
-			course.addCourseComponent(test);
-			course.print();
-		});
-
-		// Add assignment menu item action
-		addAssignmentMenuItem.setOnAction(e ->{
-			addCourseComponentMenuButton.setText("Assignment");
-			if(!gridPane.getChildren().contains(courseComponentNameTextField)) {
-				gridPane.add(courseComponentNameTextField, 0, 3);
-				gridPane.add(markWeightTextField, 0, 4);
-				gridPane.add(datePicker, 0, 5);
-			}
-			gridPane.getChildren().remove(6, 6);
-			gridPane.add(addAssignmentButton, 0, 6);
-		});
-
-		// Add test menu item action
-		addTestMenuItem.setOnAction(e ->{
-			addCourseComponentMenuButton.setText("Test");
-			if(!gridPane.getChildren().contains(courseComponentNameTextField)) {
-				gridPane.add(courseComponentNameTextField, 0, 3);
-				gridPane.add(markWeightTextField, 0, 4);
-				gridPane.add(datePicker, 0, 5);
-			}
-			gridPane.getChildren().remove(6, 6);
-			gridPane.add(addTestButton, 0, 6);
-		});
 
 		gridPane.add(courseNameTextField, 0, 0);
 		gridPane.add(courseCodeTextField, 0, 1);
-		gridPane.add(addCourseComponentMenuButton, 0, 2);
+		//gridPane.add(addCourseComponentMenuButton, 0, 2);
 		gridPane.add(submitCourseButton, 0, 7);
 
 		return gridPane;
 	}
+
+	private Node getNodeFromGridPane(GridPane gridPane, int col, int row) {
+		for (Node node : gridPane.getChildren()) {
+			if (GridPane.getColumnIndex(node) == col && GridPane.getRowIndex(node) == row) {
+				return node;
+			}
+		}
+		return null;
+	}
+
 
     public static void main(String[] args) {
         launch(args);
