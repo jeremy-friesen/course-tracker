@@ -6,16 +6,24 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 public class SaveSystem {
-	private static String defaultFilePath = "default.sem";
+	private static String defaultFilePath = "default.ctf";
 
 	// save semester object to default file path
 	public static void saveSemester(Semester semester){
 		try {
+			// sets all VBox's to null because the VBox class isn't Serializable
+			for(int i = 0; i < semester.getCourses().size(); i++){
+				semester.getCourses().get(i).resetVBox();
+			}
 			FileOutputStream fileOut = new FileOutputStream(defaultFilePath);
 			ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
 			objectOut.writeObject(semester);
 			objectOut.close();
 			System.out.println("The Semester object was successfully written to a file");
+			// update all VBox's so they are no longer null
+			for(int i = 0; i < semester.getCourses().size(); i++){
+				semester.getCourses().get(i).updateVBox();
+			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
@@ -24,11 +32,19 @@ public class SaveSystem {
 	// save semester object to custom file path
 	public static void saveSemester(Semester semester, String filePath){
 		try {
+			// sets all VBox's to null because the VBox class isn't Serializable
+			for(int i = 0; i < semester.getCourses().size(); i++){
+				semester.getCourses().get(i).resetVBox();
+			}
 			FileOutputStream fileOut = new FileOutputStream(filePath);
 			ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
 			objectOut.writeObject(semester);
 			objectOut.close();
 			System.out.println("The Semester object was successfully written to a file");
+			// update all VBox's so they are no longer null
+			for(int i = 0; i < semester.getCourses().size(); i++){
+				semester.getCourses().get(i).updateVBox();
+			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}

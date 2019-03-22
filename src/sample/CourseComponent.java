@@ -4,9 +4,10 @@ import javafx.geometry.Insets;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class CourseComponent {
+public class CourseComponent implements Serializable {
 	private double markWeight;
 	private boolean isComplete = false;
 	private double mark = 0.0;

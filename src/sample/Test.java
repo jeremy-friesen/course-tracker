@@ -4,9 +4,10 @@ import javafx.geometry.Insets;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Test extends CourseComponent {
+public class Test extends CourseComponent implements Serializable {
 
 	// Constructors
 	public Test(){

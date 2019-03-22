@@ -45,7 +45,8 @@ public class Semester implements Serializable {
 		coursesGridPane.setPadding(new Insets(5,5,5,5));
 		coursesGridPane.add(new Text("Courses:"), 0, 0);
 		for(int i = 0; i < courses.size(); i++){
-			coursesGridPane.add(courses.get(i).toVBox(), i, 1);
+			courses.get(i).updateVBox();
+			coursesGridPane.add(courses.get(i).getVBox(), i, 1);
 		}
 		return coursesGridPane;
 	}
@@ -54,6 +55,7 @@ public class Semester implements Serializable {
 		VBox vbox = new VBox();
 		ArrayList<CourseComponent> courseComponents = getCourseComponentsByDate();
 		for(int i = 0; i < courseComponents.size(); i++){
+			courses.get(i).updateVBox();
 			vbox.getChildren().add(courseComponents.get(i).toVBox());
 		}
 		return vbox;

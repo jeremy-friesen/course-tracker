@@ -13,6 +13,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.application.Platform;
 import javafx.scene.control.Menu;
@@ -24,6 +25,7 @@ import javafx.scene.shape.Rectangle;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.io.File;
 import java.time.LocalDate;
 
 public class Main extends Application {
@@ -39,7 +41,6 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
     	System.out.println(mainPane.getHeight());
     	TabPane leftMenu = new TabPane();
-		leftMenu.setTabMinWidth(100);
 		System.out.println(leftMenu.getTabMinWidth());
     	addCourseTab.setText("Add Course");
 		addCourseTab.setContent(addCoursePane());
@@ -48,18 +49,6 @@ public class Main extends Application {
     	leftMenu.getTabs().addAll(addCourseTab, componentsTab);
 		mainBorderPane.setLeft(leftMenu);
 
-		//EXAMPLE CODE: remove eventually
-/*
-    	Course course = new Course("Software Systems", "CSCI-2020U");
-    	course.addCourseComponent(new Assignment(10.0, LocalDate.of(2019, 03, 25), "Final Project"));
-		course.addCourseComponent(new Test(40.0, LocalDate.of(2019, 04, 10), "Final Exam"));
-		semester.addCourse(course);
-		semester.addCourse(course);
-		semester.addCourse(course);
-		componentsTab.setContent(semester.getCourseComponentsByDateVBox());
-
-		//EXAMPLE CODE ENDS
-*/
 		coursesScrollPane.setContent(semester.getCoursesGridPane());
     	mainBorderPane.setCenter(coursesScrollPane);
 		HBox.setHgrow(leftMenu, Priority.ALWAYS);
@@ -74,26 +63,63 @@ public class Main extends Application {
     }
 
     private MenuBar menuBar(){
-		Menu filemenu = new Menu ("File");
-		MenuBar bar = new MenuBar();
-		Menu editmenu= new Menu("Edit");
+		MenuBar menuBar = new MenuBar();
+		Menu fileMenu = new Menu ("File");
+		Menu editMenu= new Menu("Edit");
 
 		MenuItem save = new MenuItem("Save");
-		filemenu.getItems().add(save);
-		MenuItem saveas = new MenuItem("Save As...");
-		filemenu.getItems().add(saveas);
-		MenuItem exit = new MenuItem("Exit");
-		filemenu.getItems().add(exit);
+		save.setOnAction(e ->{
+			SaveSystem.saveSemester(semester);
+		});
+		fileMenu.getItems().add(save);
+		MenuItem saveAs = new MenuItem("Save As..");
+		saveAs.setOnAction(e -> {
+			File file = saveAsFileChooser();
+			if (file != null) {
+				SaveSystem.saveSemester(semester, file.toString());
+			} else {
+				System.out.println("Can not save: User backed out of file chooser.");
+			}
+		});
+		fileMenu.getItems().add(saveAs);
+		MenuItem load = new MenuItem("Open");
+		load.setOnAction(e ->{
+			semester = SaveSystem.loadSemester();
+			coursesScrollPane.setContent(semester.getCoursesGridPane());
+			componentsTab.setContent(semester.getCourseComponentsByDateVBox());
+		});
+		fileMenu.getItems().add(load);
+		MenuItem loadFrom = new MenuItem("Open from..");
+		loadFrom.setOnAction(e -> {
+			File file = fileChooser();
+			if (file != null) {
+				semester = SaveSystem.loadSemester(file.toString());
+				coursesScrollPane.setContent(semester.getCoursesGridPane());
+				componentsTab.setContent(semester.getCourseComponentsByDateVBox());
+			} else {
+				System.out.println("Can not open: file does not exist or user backed out of file chooser.");
+			}
+		});
+		fileMenu.getItems().add(loadFrom);
+		MenuItem newFile = new MenuItem("New");
+		newFile.setOnAction(e -> {
+			semester = new Semester();
+			coursesScrollPane.setContent(semester.getCoursesGridPane());
+			componentsTab.setContent(semester.getCourseComponentsByDateVBox());
+		});
+		fileMenu.getItems().add(newFile);
+		MenuItem exit = new Menu("Exit");
 		exit.setOnAction(e-> Platform.exit());
+		fileMenu.getItems().add(exit);
 		MenuItem cut= new MenuItem("Cut");
-		editmenu.getItems().add(cut);
+		editMenu.getItems().add(cut);
 		MenuItem copy= new MenuItem("Copy");
-		editmenu.getItems().add(copy);
+		editMenu.getItems().add(copy);
 		MenuItem paste= new MenuItem("Paste");
-		editmenu.getItems().add(paste);
+		editMenu.getItems().add(paste);
 
-		bar.getMenus().addAll(filemenu, editmenu);
-		return  bar;
+		menuBar.getMenus().addAll(fileMenu, editMenu);
+		return menuBar;
 	}
 
 	private GridPane addCoursePane(){
@@ -128,15 +154,26 @@ public class Main extends Application {
 		return gridPane;
 	}
 
-	private Node getNodeFromGridPane(GridPane gridPane, int col, int row) {
-		for (Node node : gridPane.getChildren()) {
-			if (GridPane.getColumnIndex(node) == col && GridPane.getRowIndex(node) == row) {
-				return node;
-			}
-		}
-		return null;
+	private File fileChooser(){
+    	Stage fileChooserStage = new Stage();
+		FileChooser fileChooser = new FileChooser();
+		FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("Course Tracker File", ".ctf");
+		fileChooser.getExtensionFilters().add(extensionFilter);
+		fileChooser.setTitle("Choose File to Load");
+		File file = fileChooser.showOpenDialog(fileChooserStage);
+		return file;
 	}
 
+	private File saveAsFileChooser(){
+    	Stage fileChooserStage = new Stage();
+    	FileChooser fileChooser = new FileChooser();
+    	FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("Course Tracker File", ".ctf");
+    	fileChooser.getExtensionFilters().add(extensionFilter);
+    	fileChooser.setSelectedExtensionFilter(extensionFilter);
+    	fileChooser.setTitle("Choose File to Save to");
+    	File file = fileChooser.showSaveDialog(fileChooserStage);
+    	return file;
+	}
 
     public static void main(String[] args) {
         launch(args);
