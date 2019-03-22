@@ -3,15 +3,15 @@ package sample;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.application.Platform;
@@ -19,7 +19,6 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SeparatorMenuItem;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
@@ -29,8 +28,9 @@ import java.time.LocalDate;
 
 public class Main extends Application {
 	BorderPane mainPane = new BorderPane();
-	GridPane mainGridPane = new GridPane();
+	BorderPane mainBorderPane = new BorderPane();
 	Semester semester = new Semester();
+	ScrollPane coursesScrollPane = new ScrollPane();
 
 	Tab addCourseTab = new Tab();
 	Tab componentsTab = new Tab();
@@ -39,12 +39,14 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
     	System.out.println(mainPane.getHeight());
     	TabPane leftMenu = new TabPane();
+		leftMenu.setTabMinWidth(100);
+		System.out.println(leftMenu.getTabMinWidth());
     	addCourseTab.setText("Add Course");
 		addCourseTab.setContent(addCoursePane());
 		componentsTab.setText("Components by Date");
 		componentsTab.setContent(semester.getCourseComponentsByDateVBox());
     	leftMenu.getTabs().addAll(addCourseTab, componentsTab);
-		mainGridPane.add(leftMenu, 0,0);
+		mainBorderPane.setLeft(leftMenu);
 
 		//EXAMPLE CODE: remove eventually
 /*
@@ -58,15 +60,16 @@ public class Main extends Application {
 
 		//EXAMPLE CODE ENDS
 */
-
-
-
-    	mainGridPane.add(semester.getCoursesGridPane(), 1, 0);
+		coursesScrollPane.setContent(semester.getCoursesGridPane());
+    	mainBorderPane.setCenter(coursesScrollPane);
+		HBox.setHgrow(leftMenu, Priority.ALWAYS);
+		HBox.setHgrow(coursesScrollPane, Priority.ALWAYS);
 
 		mainPane.setTop(menuBar());
-		mainPane.setCenter(mainGridPane);
+		mainPane.setCenter(mainBorderPane);
 		Scene scene = new Scene(mainPane, 950, 600);
 		primaryStage.setScene(scene);
+		primaryStage.setTitle("Course Tracker");
 		primaryStage.show();
     }
 
@@ -111,11 +114,11 @@ public class Main extends Application {
 			course.setCourseCode(courseCodeTextField.getText());
 			course.print();
 			semester.addCourse(course);
-			mainGridPane.add(semester.getCoursesGridPane(), 1, 0);
+			//mainHBox.getChildren().remove(1);
+			//mainHBox.getChildren().add(semester.getCoursesGridPane());
+			coursesScrollPane.setContent(semester.getCoursesGridPane());
 			componentsTab.setContent(semester.getCourseComponentsByDateVBox());
 		});
-
-
 
 		gridPane.add(courseNameTextField, 0, 0);
 		gridPane.add(courseCodeTextField, 0, 1);

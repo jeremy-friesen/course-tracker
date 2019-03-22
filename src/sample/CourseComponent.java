@@ -38,9 +38,13 @@ public class CourseComponent {
 		return mark;
 	}
 
-	public String getName() { return name;	}
+	public String getName() {
+		return name;
+	}
 
-	public LocalDate getDate(){return date;}
+	public LocalDate getDate(){
+		return date;
+	}
 
 	// setters
 	public void setMarkWeight(double markWeight){
@@ -55,9 +59,13 @@ public class CourseComponent {
 		this.mark = mark;
 	}
 
-	public void setName(String name) { this.name = name; }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-	public void setDate(LocalDate date){this.date = date;}
+	public void setDate(LocalDate date){
+		this.date = date;
+	}
 
 	//@Override
 	public int compareTo(CourseComponent o1, CourseComponent o2) {

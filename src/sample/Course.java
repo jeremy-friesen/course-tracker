@@ -63,8 +63,7 @@ public class Course implements Serializable {
 		this.courseCode = courseCode;
 	}
 
-	public GridPane courseDisplay()
-	{
+	public GridPane courseDisplay(){
 		GridPane gridPane = new GridPane();
 		MenuButton addCourseComponentMenuButton = new MenuButton("Add CourseComponent");
 		MenuItem addAssignmentMenuItem = new MenuItem("Assignment");
