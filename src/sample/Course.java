@@ -21,7 +21,7 @@ import java.util.Comparator;
 public class Course implements Serializable {
 	private String courseName;
 	private String courseCode;
-	private String courseColour = "#FA8072";
+	private String courseColour;
 	private ArrayList<CourseComponent> courseComponents = new ArrayList<CourseComponent>();
 	private VBox courseVBox = new VBox();
 
@@ -58,7 +58,7 @@ public class Course implements Serializable {
 		this.courseComponents.addAll(newCourseComponents);
 	}
 
-	// getters & setters
+	// Getters & Setters
 	public String getCourseName() {
 		return courseName;
 	}
@@ -81,6 +81,10 @@ public class Course implements Serializable {
 
 	public GridPane addComponentGridPane(){
 		GridPane gridPane = new GridPane();
+		gridPane.setAlignment(Pos.CENTER);
+		gridPane.setHgap(5);
+		gridPane.setVgap(5);
+
 		gridPane.add(new Label("Name:"), 0, 0);
 
 		TextField nameTextField = new TextField();
@@ -94,27 +98,13 @@ public class Course implements Serializable {
 
 		TextField markWeightTextField = new TextField();
 		gridPane.add(markWeightTextField, 1, 1);
-		gridPane.add(new Label("Type:"), 0, 3);
 
-		String[] selectedType = {"Default"};
-		MenuButton typeMenu = new MenuButton("Default");
-		MenuItem defaultMenuItem = new MenuItem("Default");
-		defaultMenuItem.setOnAction(e -> {selectedType[0] = "Default"; typeMenu.setText("Default");});
-		MenuItem assignmentMenuItem = new MenuItem("Assignment");
-		assignmentMenuItem.setOnAction(e -> {selectedType[0] = "Assignment"; typeMenu.setText("Assignment");});
-		MenuItem testMenuItem = new MenuItem("Test");
-		testMenuItem.setOnAction(e -> {selectedType[0] = "Test"; typeMenu.setText("Test");});
-		typeMenu.getItems().addAll(defaultMenuItem, assignmentMenuItem, testMenuItem);
-		gridPane.add(typeMenu, 1, 3);
+
 
 		Button addButton = new Button("Add");
 		addButton.setOnAction(e -> {
 			CourseComponent newComponent = new CourseComponent();
-			if(selectedType[0] == "Assignment"){
-				newComponent = new Assignment();
-			} else if(selectedType[0] == "Test"){
-				newComponent = new Test();
-			}
+
 			newComponent.setName(nameTextField.getText());
 			if(markWeightTextField.getText().isEmpty()){
 				newComponent.setMarkWeight(0);
@@ -159,10 +149,11 @@ public class Course implements Serializable {
 			courseVBox.getChildren().add(courseComponents.get(i).toVBox());
 		}
 		Button addComponent = new Button();
+		addComponent.setPadding(new Insets( 5));
 		addComponent.setText("Add Course Components");
 		addComponent.setOnAction(e -> {
 			Stage newStage = new Stage();
-			Scene scene1 = new Scene(addComponentGridPane(), 315, 200);
+			Scene scene1 = new Scene(addComponentGridPane(), 275, 180);
 			newStage.setScene(scene1);
 			newStage.setTitle("Add Course Components");
 			newStage.show();

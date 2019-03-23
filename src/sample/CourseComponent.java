@@ -1,8 +1,10 @@
 package sample;
 
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
+import javafx.scene.text.*;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -90,13 +92,33 @@ public class CourseComponent implements Serializable {
 	}
 
 	public VBox toVBox(){
+
+		Text dateText = new Text(date.toString());
+		Text markWeightText = new Text(markWeight + "%");
+		dateText.setStyle("-fx-font-weight: bold");
+		markWeightText.setStyle("-fx-font-weight: bold");
+
+		// Create delete and edit buttons
+		Button componentButton = new Button();
+		componentButton.setText(name);
+		componentButton.setStyle("-fx-font-weight: bold; -fx-font-size: 14; -fx-background-color: transparent;");
+		componentButton.setAlignment(Pos.CENTER);
+
+		componentButton.setOnAction(e -> {
+			editComponent(name);
+		});
+
 		final VBox vbox = new VBox();
-		vbox.setPadding(new Insets(5, 5, 5, 5));
-		vbox.getChildren().add(new Text(name + ":"));
-		vbox.getChildren().add(new Text("Date: " + date.toString()));
-		vbox.getChildren().add(new Text("Mark weight: " + markWeight + "%"));
-		vbox.setStyle("-fx-border-color: purple;");
-		//vbox.setStyle("-fx-background-color: purple;");
+		vbox.setPadding(new Insets( 5));
+		vbox.setSpacing(5);
+		vbox.getChildren().add(componentButton);
+		vbox.getChildren().add(dateText);
+		vbox.getChildren().add(markWeightText);
+		vbox.setStyle("-fx-border-width: 2px; -fx-border-color: white;");
 		return vbox;
+	}
+
+	public void editComponent(String name){
+		//course.addComponentGridPane();
 	}
 }

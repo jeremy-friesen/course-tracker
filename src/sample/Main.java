@@ -11,6 +11,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
@@ -174,23 +175,34 @@ public class Main extends Application {
 		HBox colourHBox = new HBox();
 
 		final ToggleGroup radioButtonGroup = new ToggleGroup();
+		RadioButton greyButton = new RadioButton("Grey");
+		greyButton.setSelected(true);
+		courseColour = "#d3d3d3";
 		RadioButton redButton = new RadioButton("Red");
 		RadioButton yellowButton = new RadioButton("Yellow");
 		RadioButton greenButton = new RadioButton("Green");
 		RadioButton blueButton = new RadioButton("Blue");
 		RadioButton purpleButton = new RadioButton("Purple");
 
+		greyButton.setToggleGroup(radioButtonGroup);
 		redButton.setToggleGroup(radioButtonGroup);
 		yellowButton.setToggleGroup(radioButtonGroup);
 		greenButton.setToggleGroup(radioButtonGroup);
 		blueButton.setToggleGroup(radioButtonGroup);
 		purpleButton.setToggleGroup(radioButtonGroup);
 
+		colourHBox.getChildren().add(greyButton);
 		colourHBox.getChildren().add(redButton);
 		colourHBox.getChildren().add(yellowButton);
 		colourHBox.getChildren().add(greenButton);
 		colourHBox.getChildren().add(blueButton);
 		colourHBox.getChildren().add(purpleButton);
+
+		greyButton.setOnAction(e -> {
+			if (greyButton.isSelected()) {
+				courseColour = "#d3d3d3";
+			}
+		});
 
 		redButton.setOnAction(e -> {
 			if (redButton.isSelected()) {
@@ -224,6 +236,7 @@ public class Main extends Application {
 
 		// Course "Add" button
 		Button submitCourseButton = new Button("Submit Course");
+
 		submitCourseButton.setOnAction(e -> {
 			GridPane content = semester.getCoursesGridPane();
 
@@ -233,12 +246,12 @@ public class Main extends Application {
 			componentsTab.setContent(semester.getCourseComponentsByDateVBox());
 			courseNameTextField.setText("");
 			courseCodeTextField.setText("");
-			redButton.setSelected(false);
-			yellowButton.setSelected(false);
-			greenButton.setSelected(false);
-			blueButton.setSelected(false);
-			purpleButton.setSelected(false);
+
+			greyButton.setSelected(true);
+			courseColour = "#d3d3d3";
 		});
+
+
 
 		gridPane.add(courseNameTextField, 0, 0);
 		gridPane.add(courseCodeTextField, 0, 1);
