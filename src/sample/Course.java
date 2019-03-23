@@ -21,6 +21,7 @@ import java.util.Comparator;
 public class Course implements Serializable {
 	private String courseName;
 	private String courseCode;
+	private String courseColour = "#FA8072";
 	private ArrayList<CourseComponent> courseComponents = new ArrayList<CourseComponent>();
 	private VBox courseVBox = new VBox();
 
@@ -29,15 +30,18 @@ public class Course implements Serializable {
 	// Constructor
 	public Course() {
 		this.courseName = "defaultCourseName";
+		this.courseColour = courseColour;
 	}
 
 	public Course(String courseName) {
 		this.courseName = courseName;
+		this.courseColour = courseColour;
 	}
 
 	public Course(String courseName, String courseCode) {
 		this.courseName = courseName;
 		this.courseCode = courseCode;
+		this.courseColour = courseColour;
 	}
 
 	// CourseComponents get and add
@@ -58,32 +62,40 @@ public class Course implements Serializable {
 	public String getCourseName() {
 		return courseName;
 	}
-
 	public String getCourseCode() {
 		return courseCode;
+	}
+	public String getCourseColour() {
+		return courseColour;
 	}
 
 	public void setCourseName(String courseName) {
 		this.courseName = courseName;
 	}
-
 	public void setCourseCode(String courseCode) {
 		this.courseCode = courseCode;
+	}
+	public void setCourseColour(String courseColour) {
+		this.courseColour = courseColour;
 	}
 
 	public GridPane addComponentGridPane(){
 		GridPane gridPane = new GridPane();
 		gridPane.add(new Label("Name:"), 0, 0);
+
 		TextField nameTextField = new TextField();
 		gridPane.add(nameTextField, 1, 0);
 		gridPane.add(new Label("Date:"), 0, 2);
+
 		DatePicker datePicker = new DatePicker();
 		datePicker.setValue(LocalDate.now());
 		gridPane.add(datePicker, 1, 2);
 		gridPane.add(new Label("Mark Weight:"), 0, 1);
+
 		TextField markWeightTextField = new TextField();
 		gridPane.add(markWeightTextField, 1, 1);
 		gridPane.add(new Label("Type:"), 0, 3);
+
 		String[] selectedType = {"Default"};
 		MenuButton typeMenu = new MenuButton("Default");
 		MenuItem defaultMenuItem = new MenuItem("Default");
@@ -94,6 +106,7 @@ public class Course implements Serializable {
 		testMenuItem.setOnAction(e -> {selectedType[0] = "Test"; typeMenu.setText("Test");});
 		typeMenu.getItems().addAll(defaultMenuItem, assignmentMenuItem, testMenuItem);
 		gridPane.add(typeMenu, 1, 3);
+
 		Button addButton = new Button("Add");
 		addButton.setOnAction(e -> {
 			CourseComponent newComponent = new CourseComponent();
@@ -155,7 +168,9 @@ public class Course implements Serializable {
 			newStage.show();
 		});
 		courseVBox.getChildren().add(addComponent);
-		courseVBox.setStyle("-fx-border-color: green;");
+		courseVBox.setStyle("-fx-border-color: #FFFFFF;");
+		courseVBox.setStyle("-fx-background-color:" + courseColour + ";");
+
 	}
 
 	public void resetVBox(){

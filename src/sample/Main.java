@@ -37,6 +37,8 @@ public class Main extends Application {
 	Tab addCourseTab = new Tab();
 	Tab componentsTab = new Tab();
 
+	String courseColour;
+
     @Override
     public void start(Stage primaryStage) throws Exception{
     	System.out.println(mainPane.getHeight());
@@ -56,7 +58,7 @@ public class Main extends Application {
 
 		mainPane.setTop(menuBar());
 		mainPane.setCenter(mainBorderPane);
-		Scene scene = new Scene(mainPane, 950, 600);
+		Scene scene = new Scene(mainPane, 1100, 600);
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("Course Tracker");
 		primaryStage.show();
@@ -131,13 +133,66 @@ public class Main extends Application {
 		TextField courseCodeTextField = new TextField();
 		courseCodeTextField.setPromptText("Course Code");
 
+		HBox colourHBox = new HBox();
+
+		final ToggleGroup radioButtonGroup = new ToggleGroup();
+		RadioButton redButton = new RadioButton("Red");
+		RadioButton yellowButton = new RadioButton("Yellow");
+		RadioButton greenButton = new RadioButton("Green");
+		RadioButton blueButton = new RadioButton("Blue");
+		RadioButton purpleButton = new RadioButton("Purple");
+
+		redButton.setToggleGroup(radioButtonGroup);
+		yellowButton.setToggleGroup(radioButtonGroup);
+		greenButton.setToggleGroup(radioButtonGroup);
+		blueButton.setToggleGroup(radioButtonGroup);
+		purpleButton.setToggleGroup(radioButtonGroup);
+
+		colourHBox.getChildren().add(redButton);
+		colourHBox.getChildren().add(yellowButton);
+		colourHBox.getChildren().add(greenButton);
+		colourHBox.getChildren().add(blueButton);
+		colourHBox.getChildren().add(purpleButton);
+
+		redButton.setOnAction(e -> {
+			if (redButton.isSelected()) {
+				courseColour = "#FA8072";
+			}
+		});
+
+		yellowButton.setOnAction(e -> {
+			if (yellowButton.isSelected()) {
+				courseColour = "#FFFACD";
+			}
+		});
+
+		greenButton.setOnAction(e -> {
+			if (greenButton.isSelected()) {
+				courseColour = "ACE1AF";
+			}
+		});
+
+		blueButton.setOnAction(e -> {
+			if (blueButton.isSelected()) {
+				courseColour = "#ADD8E6";
+			}
+		});
+
+		purpleButton.setOnAction(e -> {
+			if (purpleButton.isSelected()) {
+				courseColour = "#E0B0FF";
+			}
+		});
+
 		// Course "Add" button
 		Button submitCourseButton = new Button("Submit Course");
 		submitCourseButton.setOnAction(e -> {
 			Course course = new Course();
 			GridPane content = semester.getCoursesGridPane();
+
 			course.setCourseName(courseNameTextField.getText());
 			course.setCourseCode(courseCodeTextField.getText());
+			course.setCourseColour(courseColour);
 			course.print();
 			semester.addCourse(course);
 			//mainHBox.getChildren().remove(1);
@@ -149,10 +204,68 @@ public class Main extends Application {
 		gridPane.add(courseNameTextField, 0, 0);
 		gridPane.add(courseCodeTextField, 0, 1);
 		//gridPane.add(addCourseComponentMenuButton, 0, 2);
-		gridPane.add(submitCourseButton, 0, 7);
+		gridPane.add(colourHBox, 0, 3); // Add color choice
+		gridPane.add(submitCourseButton, 0, 4);
 
 		return gridPane;
 	}
+
+	/*private HBox addcolourHBox(Course course){
+		HBox colourGridPane = new HBox();
+
+		final ToggleGroup radioButtonGroup = new ToggleGroup();
+
+		RadioButton redButton = new RadioButton();
+		//redButton.setSelected(true);
+		RadioButton yellowButton = new RadioButton();
+		RadioButton greenButton = new RadioButton();
+		RadioButton blueButton = new RadioButton();
+		RadioButton purpleButton = new RadioButton();
+
+		redButton.setToggleGroup(radioButtonGroup);
+		yellowButton.setToggleGroup(radioButtonGroup);
+		greenButton.setToggleGroup(radioButtonGroup);
+		blueButton.setToggleGroup(radioButtonGroup);
+		purpleButton.setToggleGroup(radioButtonGroup);
+
+		colourGridPane.getChildren().add(redButton);
+		colourGridPane.getChildren().add(yellowButton);
+		colourGridPane.getChildren().add(greenButton);
+		colourGridPane.getChildren().add(blueButton);
+		colourGridPane.getChildren().add(purpleButton);
+
+		redButton.setOnAction(e -> {
+			if (redButton.isSelected()) {
+				course.setCourseColour("#FA8072");
+			}
+		});
+
+		yellowButton.setOnAction(e -> {
+			if (yellowButton.isSelected()) {
+				course.setCourseColour("#FFFACD");
+			}
+		});
+
+		greenButton.setOnAction(e -> {
+			if (greenButton.isSelected()) {
+				course.setCourseColour("ACE1AF");
+			}
+		});
+
+		blueButton.setOnAction(e -> {
+			if (blueButton.isSelected()) {
+				course.setCourseColour("#ADD8E6");
+			}
+		});
+
+		purpleButton.setOnAction(e -> {
+			if (purpleButton.isSelected()) {
+				course.setCourseColour("#E0B0FF");
+			}
+		});
+
+		return colourGridPane;
+	}*/
 
 	private File fileChooser(){
     	Stage fileChooserStage = new Stage();

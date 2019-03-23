@@ -47,7 +47,7 @@ public class Assignment extends CourseComponent implements Serializable {
 		vbox.setPadding(new Insets(5, 5, 5, 5));
 		vbox.getChildren().add(new Text(super.getName() + ":"));
 		vbox.getChildren().add(new Text("Due date: " + super.getDate().toString()));
-		vbox.getChildren().add(new Text("Mark weight: " + super.getMarkWeight()));
+		vbox.getChildren().add(new Text("Mark weight: " + super.getMarkWeight() + "%"));
 		vbox.setStyle("-fx-border-color: blue;");
 		return vbox;
 	}

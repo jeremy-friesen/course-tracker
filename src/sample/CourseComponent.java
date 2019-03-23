@@ -94,8 +94,9 @@ public class CourseComponent implements Serializable {
 		vbox.setPadding(new Insets(5, 5, 5, 5));
 		vbox.getChildren().add(new Text(name + ":"));
 		vbox.getChildren().add(new Text("Date: " + date.toString()));
-		vbox.getChildren().add(new Text("Mark weight: " + markWeight));
+		vbox.getChildren().add(new Text("Mark weight: " + markWeight + "%"));
 		vbox.setStyle("-fx-border-color: purple;");
+		//vbox.setStyle("-fx-background-color: purple;");
 		return vbox;
 	}
 }
