@@ -26,6 +26,11 @@ import javafx.scene.shape.Rectangle;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.net.ServerSocket;
+import java.net.Socket;
 import java.time.LocalDate;
 
 public class Main extends Application {
@@ -41,9 +46,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-    	System.out.println(mainPane.getHeight());
     	TabPane leftMenu = new TabPane();
-		System.out.println(leftMenu.getTabMinWidth());
     	addCourseTab.setText("Add Course");
 		addCourseTab.setContent(addCoursePane());
 		componentsTab.setText("Components by Date");
@@ -62,6 +65,41 @@ public class Main extends Application {
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("Course Tracker");
 		primaryStage.show();
+
+		Thread serverThread = new Thread(() -> {
+			try {
+				ServerSocket serverSocket = new ServerSocket(7777);
+				while(true) {
+					Socket socket = serverSocket.accept();
+					try {
+						System.out.println("Connected to Client");
+						InputStream inputStream = socket.getInputStream();
+						ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
+						Object inputObject = new Object();
+						try {
+							inputObject = objectInputStream.readObject();
+						}
+						catch (Exception e){
+							e.printStackTrace();
+						}
+						objectInputStream.close();
+						Course newCourse = (Course)inputObject;
+						newCourse.updateVBox();
+						semester.addCourse(newCourse);
+						Platform.runLater(() ->{
+							updateUI();
+						});
+						System.out.println("Course added from Client");
+					} catch (IOException ex){
+						ex.printStackTrace();
+					}
+				}
+			}
+			catch(IOException ex) {
+				System.err.println(ex);
+			}
+		});
+		serverThread.start();
     }
 
     private MenuBar menuBar(){
@@ -187,18 +225,19 @@ public class Main extends Application {
 		// Course "Add" button
 		Button submitCourseButton = new Button("Submit Course");
 		submitCourseButton.setOnAction(e -> {
-			Course course = new Course();
 			GridPane content = semester.getCoursesGridPane();
 
-			course.setCourseName(courseNameTextField.getText());
-			course.setCourseCode(courseCodeTextField.getText());
-			course.setCourseColour(courseColour);
-			course.print();
-			semester.addCourse(course);
-			//mainHBox.getChildren().remove(1);
-			//mainHBox.getChildren().add(semester.getCoursesGridPane());
+			addCourseToSemester(courseNameTextField.getText(), courseCodeTextField.getText(), courseColour);
+
 			coursesScrollPane.setContent(semester.getCoursesGridPane());
 			componentsTab.setContent(semester.getCourseComponentsByDateVBox());
+			courseNameTextField.setText("");
+			courseCodeTextField.setText("");
+			redButton.setSelected(false);
+			yellowButton.setSelected(false);
+			greenButton.setSelected(false);
+			blueButton.setSelected(false);
+			purpleButton.setSelected(false);
 		});
 
 		gridPane.add(courseNameTextField, 0, 0);
@@ -208,6 +247,16 @@ public class Main extends Application {
 		gridPane.add(submitCourseButton, 0, 4);
 
 		return gridPane;
+	}
+
+	private void addCourseToSemester(String courseName, String courseCode, String courseColour){
+		Course course = new Course();
+		course.setCourseName(courseName);
+		course.setCourseCode(courseCode);
+		course.setCourseColour(courseColour);
+		semester.addCourse(course);
+		System.out.println("Course added:");
+		course.print();
 	}
 
 	private File fileChooser(){
@@ -229,6 +278,11 @@ public class Main extends Application {
     	fileChooser.setTitle("Choose File to Save to");
     	File file = fileChooser.showSaveDialog(fileChooserStage);
     	return file;
+	}
+
+	private void updateUI(){
+		coursesScrollPane.setContent(semester.getCoursesGridPane());
+		componentsTab.setContent(semester.getCourseComponentsByDateVBox());
 	}
 
     public static void main(String[] args) {

@@ -1,9 +1,6 @@
 package sample;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 
 public class SaveSystem {
 	private static String defaultFilePath = "default.ctf";
@@ -54,6 +51,10 @@ public class SaveSystem {
 	public static Semester loadSemester(){
 		Semester semester = new Semester();
 		try {
+			File file = new File(defaultFilePath);
+			if(!file.exists()){
+				System.out.println("Error: file does not exist");
+			}
 			FileInputStream fileIn = new FileInputStream(defaultFilePath);
 			ObjectInputStream objectIn = new ObjectInputStream(fileIn);
 			Object object = objectIn.readObject();
