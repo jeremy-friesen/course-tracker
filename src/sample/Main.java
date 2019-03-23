@@ -210,63 +210,6 @@ public class Main extends Application {
 		return gridPane;
 	}
 
-	/*private HBox addcolourHBox(Course course){
-		HBox colourGridPane = new HBox();
-
-		final ToggleGroup radioButtonGroup = new ToggleGroup();
-
-		RadioButton redButton = new RadioButton();
-		//redButton.setSelected(true);
-		RadioButton yellowButton = new RadioButton();
-		RadioButton greenButton = new RadioButton();
-		RadioButton blueButton = new RadioButton();
-		RadioButton purpleButton = new RadioButton();
-
-		redButton.setToggleGroup(radioButtonGroup);
-		yellowButton.setToggleGroup(radioButtonGroup);
-		greenButton.setToggleGroup(radioButtonGroup);
-		blueButton.setToggleGroup(radioButtonGroup);
-		purpleButton.setToggleGroup(radioButtonGroup);
-
-		colourGridPane.getChildren().add(redButton);
-		colourGridPane.getChildren().add(yellowButton);
-		colourGridPane.getChildren().add(greenButton);
-		colourGridPane.getChildren().add(blueButton);
-		colourGridPane.getChildren().add(purpleButton);
-
-		redButton.setOnAction(e -> {
-			if (redButton.isSelected()) {
-				course.setCourseColour("#FA8072");
-			}
-		});
-
-		yellowButton.setOnAction(e -> {
-			if (yellowButton.isSelected()) {
-				course.setCourseColour("#FFFACD");
-			}
-		});
-
-		greenButton.setOnAction(e -> {
-			if (greenButton.isSelected()) {
-				course.setCourseColour("ACE1AF");
-			}
-		});
-
-		blueButton.setOnAction(e -> {
-			if (blueButton.isSelected()) {
-				course.setCourseColour("#ADD8E6");
-			}
-		});
-
-		purpleButton.setOnAction(e -> {
-			if (purpleButton.isSelected()) {
-				course.setCourseColour("#E0B0FF");
-			}
-		});
-
-		return colourGridPane;
-	}*/
-
 	private File fileChooser(){
     	Stage fileChooserStage = new Stage();
 		FileChooser fileChooser = new FileChooser();
