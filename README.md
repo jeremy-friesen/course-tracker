@@ -4,7 +4,7 @@
 
 ## Contributors: 
 ### Jeremy Friesen - 
-### Shawn Yama - Colors, Color coding courses, Attempted 
+### Shawn Yama - Colors, Color coding courses, Attempted to create edit and delete buttons for courses and components.
 ### James Gilles - Add Course component button and the window that appears, Made ScrollPane for date, Added course sorting
 ### Kenta Hattori - MenuBar, Aided with MenuBar Functions 
 #### (In the commits both Kenta Hattori and callmekenta are the same person) 
