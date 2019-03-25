@@ -4,11 +4,12 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
 
@@ -16,19 +17,62 @@ public class Semester implements Serializable {
 	private ArrayList<Course> courses = new ArrayList<Course>();
 
 	// Constructors
+	public Semester(){}
 	public Semester(ArrayList<Course> courses){
 		this.courses = courses;
 	}
 
-	public Semester(){}
-
-	// add / get courses
-	public void addCourse(Course newCourse){
-		courses.add(courses.size(), newCourse);
-	}
-
 	public ArrayList<Course> getCourses(){
 		return courses;
+	}
+
+	public void addCourse(Course newCourse){
+		courses.add(courses.size(), newCourse);
+
+		System.out.println("Course added:");
+		newCourse.print();
+	}
+
+	public void deleteCourse(Course oldCourse){
+		for(int i = 0; i < courses.size(); i++){
+			if (courses.get(i) == oldCourse) {
+				courses.remove(i);
+				break;
+			}
+		}
+	}
+
+	public void editCourseGridPane(Course oldCourse){
+		GridPane gridPane = new GridPane();
+
+		Button editButton = new Button("Apply");
+		Button deleteButton = new Button("Delete");
+		HBox editButtonsHbox = new HBox();
+		editButtonsHbox.setPadding(new Insets(5));
+		editButtonsHbox.setSpacing(5);
+		editButtonsHbox.getChildren().add(editButton);
+		editButtonsHbox.getChildren().add(deleteButton);
+		gridPane.add(editButtonsHbox, 1, 0);
+
+		Stage newStage = new Stage();
+		Scene scene = new Scene(gridPane, 325, 180);
+		newStage.setScene(scene);
+		newStage.setTitle("Edit Course");
+		newStage.show();
+
+		editButton.setOnAction(e -> {
+			//setName(nameTextField.getText());
+			//setDate(datePicker.getValue());
+			//setMarkWeight(Double.parseDouble(markWeightTextField.getText()));
+		});
+
+		deleteButton.setOnAction(e -> {
+			deleteCourse(oldCourse);
+			scene.setFill(null);
+			newStage.setScene(scene);
+			newStage.show();
+			newStage.close();
+		});
 	}
 
 	public ArrayList<CourseComponent> getCourseComponentsByDate(){
@@ -46,7 +90,7 @@ public class Semester implements Serializable {
 		coursesGridPane.add(new Text("Courses:"), 0, 0);
 		for(int i = 0; i < courses.size(); i++){
 			courses.get(i).updateVBox();
-			coursesGridPane.add(courses.get(i).getVBox(), i, 1);
+			coursesGridPane.add(courses.get(i).getCourseVBox(), i, 1);
 		}
 		return coursesGridPane;
 	}

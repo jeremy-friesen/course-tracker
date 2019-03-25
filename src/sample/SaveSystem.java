@@ -10,7 +10,7 @@ public class SaveSystem {
 		try {
 			// sets all VBox's to null because the VBox class isn't Serializable
 			for(int i = 0; i < semester.getCourses().size(); i++){
-				semester.getCourses().get(i).resetVBox();
+				semester.getCourses().get(i).resetCourseVBox();
 			}
 			FileOutputStream fileOut = new FileOutputStream(defaultFilePath);
 			ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
@@ -31,7 +31,7 @@ public class SaveSystem {
 		try {
 			// sets all VBox's to null because the VBox class isn't Serializable
 			for(int i = 0; i < semester.getCourses().size(); i++){
-				semester.getCourses().get(i).resetVBox();
+				semester.getCourses().get(i).resetCourseVBox();
 			}
 			FileOutputStream fileOut = new FileOutputStream(filePath);
 			ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);

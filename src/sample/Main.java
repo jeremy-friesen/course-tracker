@@ -3,6 +3,7 @@ package sample;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -43,7 +44,12 @@ public class Main extends Application {
 	Tab addCourseTab = new Tab();
 	Tab componentsTab = new Tab();
 
-	String courseColour;
+	//private Course course;
+	private String courseColour;
+
+	//private Course getCourse() { return course; }
+
+	//private void setCourse(Course course) { this.course = course; }
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -165,6 +171,8 @@ public class Main extends Application {
 
 	private GridPane addCoursePane(){
     	GridPane gridPane = new GridPane();
+		gridPane.setHgap(5);
+		gridPane.setVgap(10);
 
 		TextField courseNameTextField = new TextField();
 		courseNameTextField.setPromptText("Course Name");
@@ -173,6 +181,7 @@ public class Main extends Application {
 		courseCodeTextField.setPromptText("Course Code");
 
 		HBox colourHBox = new HBox();
+		colourHBox.setSpacing(5);
 
 		final ToggleGroup radioButtonGroup = new ToggleGroup();
 		RadioButton greyButton = new RadioButton("Grey");
@@ -237,39 +246,34 @@ public class Main extends Application {
 		// Course "Add" button
 		Button submitCourseButton = new Button("Submit Course");
 
+		//Course course = new Course(courseNameButton, courseCodeTextField.getText(), courseColour);
+
 		submitCourseButton.setOnAction(e -> {
-			GridPane content = semester.getCoursesGridPane();
 
-			addCourseToSemester(courseNameTextField.getText(), courseCodeTextField.getText(), courseColour);
+			Button courseNameButton = new Button(courseNameTextField.getText());
 
-			coursesScrollPane.setContent(semester.getCoursesGridPane());
-			componentsTab.setContent(semester.getCourseComponentsByDateVBox());
+			Course course = new Course(courseNameButton, courseCodeTextField.getText(), courseColour);
+
+			courseNameButton.setOnAction(f -> {
+				semester.editCourseGridPane(course);
+				updateUI();
+			});
+
+			semester.addCourse(course);
+
+			updateUI();
+
 			courseNameTextField.setText("");
 			courseCodeTextField.setText("");
-
 			greyButton.setSelected(true);
 			courseColour = "#d3d3d3";
 		});
 
-
-
 		gridPane.add(courseNameTextField, 0, 0);
 		gridPane.add(courseCodeTextField, 0, 1);
-		//gridPane.add(addCourseComponentMenuButton, 0, 2);
-		gridPane.add(colourHBox, 0, 3); // Add color choice
-		gridPane.add(submitCourseButton, 0, 4);
-
+		gridPane.add(colourHBox, 0, 2); // Add color choice
+		gridPane.add(submitCourseButton, 0, 3);
 		return gridPane;
-	}
-
-	private void addCourseToSemester(String courseName, String courseCode, String courseColour){
-		Course course = new Course();
-		course.setCourseName(courseName);
-		course.setCourseCode(courseCode);
-		course.setCourseColour(courseColour);
-		semester.addCourse(course);
-		System.out.println("Course added:");
-		course.print();
 	}
 
 	private File fileChooser(){

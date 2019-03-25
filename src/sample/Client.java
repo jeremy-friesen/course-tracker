@@ -94,7 +94,10 @@ public class Client extends Application {
 		Button submitCourseButton = new Button("Submit Course");
 		submitCourseButton.setOnAction(e -> {
 			Course course = new Course();
-			course.setCourseName(courseNameTextField.getText());
+
+			Button courseNameButton = new Button(courseNameTextField.getText());
+
+			course.setCourseNameButton(courseNameButton);
 			course.setCourseCode(courseCodeTextField.getText());
 			course.setCourseColour(courseColour);
 			try {
@@ -102,7 +105,7 @@ public class Client extends Application {
 				System.out.println("Connected!");
 
 				ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
-				course.resetVBox();
+				course.resetCourseVBox();
 				objectOutputStream.writeObject(course);
 				socket.close();
 				System.out.println("object written");
@@ -114,9 +117,8 @@ public class Client extends Application {
 
 		gridPane.add(courseNameTextField, 0, 0);
 		gridPane.add(courseCodeTextField, 0, 1);
-		//gridPane.add(addCourseComponentMenuButton, 0, 2);
-		gridPane.add(colourHBox, 0, 3); // Add color choice
-		gridPane.add(submitCourseButton, 0, 4);
+		gridPane.add(colourHBox, 0, 2); // Add color choice
+		gridPane.add(submitCourseButton, 0, 3);
 
 		return gridPane;
 	}
