@@ -246,7 +246,7 @@ public class Main extends Application {
 			}
 		});
 
-		// Course "Add" button
+		// Course Add button
 		Button submitCourseButton = new Button("Submit Course");
 
 		submitCourseButton.setOnAction(e -> {
