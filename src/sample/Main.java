@@ -10,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
@@ -44,12 +45,9 @@ public class Main extends Application {
 	Tab addCourseTab = new Tab();
 	Tab componentsTab = new Tab();
 
-	//private Course course;
 	private String courseColour;
+	private Button submitCourseButton = new Button("Submit Course");
 
-	//private Course getCourse() { return course; }
-
-	//private void setCourse(Course course) { this.course = course; }
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -175,9 +173,8 @@ public class Main extends Application {
 		gridPane.setVgap(10);
 
 		TextField courseNameTextField = new TextField();
-		courseNameTextField.setPromptText("Course Name");
-
 		TextField courseCodeTextField = new TextField();
+		courseNameTextField.setPromptText("Course Name");
 		courseCodeTextField.setPromptText("Course Code");
 
 		HBox colourHBox = new HBox();
@@ -244,23 +241,16 @@ public class Main extends Application {
 		});
 
 		// Course "Add" button
-		Button submitCourseButton = new Button("Submit Course");
-
-		//Course course = new Course(courseNameButton, courseCodeTextField.getText(), courseColour);
-
 		submitCourseButton.setOnAction(e -> {
-
 			Button courseNameButton = new Button(courseNameTextField.getText());
 
 			Course course = new Course(courseNameButton, courseCodeTextField.getText(), courseColour);
 
 			courseNameButton.setOnAction(f -> {
-				semester.editCourseGridPane(course);
-				updateUI();
+				editCourseGridPane(course);
 			});
 
 			semester.addCourse(course);
-
 			updateUI();
 
 			courseNameTextField.setText("");
@@ -274,6 +264,55 @@ public class Main extends Application {
 		gridPane.add(colourHBox, 0, 2); // Add color choice
 		gridPane.add(submitCourseButton, 0, 3);
 		return gridPane;
+	}
+
+	public void editCourseGridPane(Course oldCourse){
+		GridPane gridPane = new GridPane();
+		gridPane.setAlignment(Pos.CENTER);
+		gridPane.setHgap(5);
+		gridPane.setVgap(5);
+
+		gridPane.add(new Label("Course name:"), 0, 0);
+		TextField courseNameTextField = new TextField();
+		gridPane.add(courseNameTextField, 1, 0);
+		courseNameTextField.setText(oldCourse.getCourseNameButton().getText());
+
+		gridPane.add(new Label("Course Code:"), 0, 1);
+		TextField courseCodeTextField = new TextField();
+		gridPane.add(courseCodeTextField, 1, 1);
+		courseCodeTextField.setText(oldCourse.getCourseCode());
+
+		Button editButton = new Button("Apply");
+		Button deleteButton = new Button("Delete");
+		HBox editButtonsHbox = new HBox();
+		editButtonsHbox.setPadding(new Insets(5));
+		editButtonsHbox.setSpacing(5);
+		editButtonsHbox.getChildren().add(editButton);
+		editButtonsHbox.getChildren().add(deleteButton);
+		gridPane.add(editButtonsHbox, 1, 4);
+
+		Stage newStage = new Stage();
+		Scene scene = new Scene(gridPane, 325, 180);
+		newStage.setScene(scene);
+		newStage.setTitle("Edit Course");
+		newStage.show();
+
+		editButton.setOnAction(e -> {
+			Button oldCourseNameButton = oldCourse.getCourseNameButton();
+			oldCourseNameButton.setText(courseNameTextField.getText());
+			oldCourse.setCourseNameButton(oldCourseNameButton);
+			oldCourse.setCourseCode(courseCodeTextField.getText());
+			updateUI();
+		});
+
+		deleteButton.setOnAction(e -> {
+			semester.deleteCourse(oldCourse);
+			scene.setFill(null);
+			newStage.setScene(scene);
+			newStage.show();
+			newStage.close();
+			updateUI();
+		});
 	}
 
 	private File fileChooser(){

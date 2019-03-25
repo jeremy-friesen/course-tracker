@@ -52,6 +52,15 @@ public class Course implements Serializable {
 		return courseComponents;
 	}
 
+	public void deleteCourseComponent(CourseComponent oldCourseComponent){
+		for(int i = 0; i < courseComponents.size(); i++){
+			if (courseComponents.get(i) == oldCourseComponent) {
+				courseComponents.remove(i);
+				break;
+			}
+		}
+	}
+
 	public void addCourseComponent(CourseComponent newCourseComponent) {
 		courseComponents.add(courseComponents.size(), newCourseComponent);
 		courseComponents.sort(Comparator.comparing(c -> c.getDate()));
@@ -124,7 +133,9 @@ public class Course implements Serializable {
 		addButton.setOnAction(e -> {
 			CourseComponent newComponent = new CourseComponent();
 
-			newComponent.setName(nameTextField.getText());
+			Button newComponentNameButton = new Button(nameTextField.getText());
+			newComponent.setComponentNameButton(newComponentNameButton);
+
 			if(markWeightTextField.getText().isEmpty()){
 				newComponent.setMarkWeight(0);
 			}
@@ -133,10 +144,72 @@ public class Course implements Serializable {
 			}
 			newComponent.setDate(datePicker.getValue());
 			this.addCourseComponent(newComponent);
+
+			newComponentNameButton.setOnAction(f -> {
+				editComponent(newComponent);
+			});
+
 			updateVBox();
 		});
 		gridPane.add(addButton, 1, 4);
 		return gridPane;
+	}
+
+	public void editComponent(CourseComponent oldComponent){
+		GridPane gridPane = new GridPane();
+		gridPane.setAlignment(Pos.CENTER);
+		gridPane.setHgap(5);
+		gridPane.setVgap(5);
+
+		gridPane.add(new Label("Name:"), 0, 0);
+		TextField nameTextField = new TextField();
+		gridPane.add(nameTextField, 1, 0);
+		nameTextField.setText(oldComponent.getComponentNameButton().getText());
+
+		gridPane.add(new Label("Date:"), 0, 2);
+		DatePicker datePicker = new DatePicker();
+		gridPane.add(datePicker, 1, 2);
+		datePicker.setValue(oldComponent.getDate());
+
+		gridPane.add(new Label("Mark Weight:"), 0, 1);
+		TextField markWeightTextField = new TextField();
+		gridPane.add(markWeightTextField, 1, 1);
+		markWeightTextField.setText(Double.toString(oldComponent.getMarkWeight()));
+
+		Button editButton = new Button("Apply");
+		Button deleteButton = new Button("Delete");
+		HBox editButtonsHbox = new HBox();
+		editButtonsHbox.setPadding(new Insets(5));
+		editButtonsHbox.setSpacing(5);
+		editButtonsHbox.getChildren().add(editButton);
+		editButtonsHbox.getChildren().add(deleteButton);
+
+		gridPane.add(editButtonsHbox, 1, 4);
+
+		Stage newStage = new Stage();
+		Scene scene = new Scene(gridPane, 325, 180);
+		newStage.setScene(scene);
+		newStage.setTitle("Edit Course Components");
+		newStage.show();
+
+		editButton.setOnAction(e -> {
+			Button oldComponentNameButton = oldComponent.getComponentNameButton();
+			oldComponentNameButton.setText(nameTextField.getText());
+			oldComponent.setComponentNameButton(oldComponentNameButton);
+			oldComponent.setDate(datePicker.getValue());
+			oldComponent.setMarkWeight(Double.parseDouble(markWeightTextField.getText()));
+			courseComponents.sort(Comparator.comparing(c -> c.getDate()));
+			updateVBox();
+		});
+
+		deleteButton.setOnAction(e -> {
+			deleteCourseComponent(oldComponent);
+			scene.setFill(null);
+			newStage.setScene(scene);
+			newStage.show();
+			newStage.close();
+			updateVBox();
+		});
 	}
 
 	// print method

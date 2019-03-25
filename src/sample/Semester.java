@@ -13,6 +13,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Comparator;
 
+
+
 public class Semester implements Serializable {
 	private ArrayList<Course> courses = new ArrayList<Course>();
 
@@ -28,7 +30,6 @@ public class Semester implements Serializable {
 
 	public void addCourse(Course newCourse){
 		courses.add(courses.size(), newCourse);
-
 		System.out.println("Course added:");
 		newCourse.print();
 	}
@@ -40,39 +41,6 @@ public class Semester implements Serializable {
 				break;
 			}
 		}
-	}
-
-	public void editCourseGridPane(Course oldCourse){
-		GridPane gridPane = new GridPane();
-
-		Button editButton = new Button("Apply");
-		Button deleteButton = new Button("Delete");
-		HBox editButtonsHbox = new HBox();
-		editButtonsHbox.setPadding(new Insets(5));
-		editButtonsHbox.setSpacing(5);
-		editButtonsHbox.getChildren().add(editButton);
-		editButtonsHbox.getChildren().add(deleteButton);
-		gridPane.add(editButtonsHbox, 1, 0);
-
-		Stage newStage = new Stage();
-		Scene scene = new Scene(gridPane, 325, 180);
-		newStage.setScene(scene);
-		newStage.setTitle("Edit Course");
-		newStage.show();
-
-		editButton.setOnAction(e -> {
-			//setName(nameTextField.getText());
-			//setDate(datePicker.getValue());
-			//setMarkWeight(Double.parseDouble(markWeightTextField.getText()));
-		});
-
-		deleteButton.setOnAction(e -> {
-			deleteCourse(oldCourse);
-			scene.setFill(null);
-			newStage.setScene(scene);
-			newStage.show();
-			newStage.close();
-		});
 	}
 
 	public ArrayList<CourseComponent> getCourseComponentsByDate(){
