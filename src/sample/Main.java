@@ -14,7 +14,15 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.layout.BorderPane;
-
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.StringSelection;
+import java.awt.datatransfer.Transferable;
+import java.awt.datatransfer.UnsupportedFlavorException;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 import java.time.LocalDate;
 
@@ -24,6 +32,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
+
     	Course course = new Course();
     	Menu filemenu = new Menu ("File");
     	MenuBar menubar = new MenuBar();
@@ -43,6 +52,22 @@ public class Main extends Application {
 		editmenu.getItems().add(copy);
 		MenuItem paste= new MenuItem("Paste");
 		editmenu.getItems().add(paste);
+
+		StringSelection data = new StringSelection("This is copied to the clipboard");
+		Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
+		cb.setContent(data,data);
+
+		// This is paste (Ctrl V)
+
+		try {
+			Transferable t = cb.getContent(null);
+			if (t.isDataFlavorSupported(DataFlavor.stringFlavor))
+				System.out.println(t.getTransferData(DataFlavor
+						.stringFlavor));
+		} catch (UnsupportedFlavorException | IOException ex) {
+			System.out.println("");
+		}
+
 
 		menubar.getMenus().addAll(filemenu, editmenu);
 
