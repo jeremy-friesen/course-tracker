@@ -53,6 +53,8 @@ public class Main extends Application {
 		MenuItem paste= new MenuItem("Paste");
 		editmenu.getItems().add(paste);
 
+		// This is copy (Ctrl C)
+
 		StringSelection data = new StringSelection("This is copied to the clipboard");
 		Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
 		cb.setContent(data,data);
