@@ -161,7 +161,6 @@ public class Course implements Serializable {
 		courseVBox.getChildren().add(addComponent);
 		courseVBox.setStyle("-fx-border-color: #FFFFFF;");
 		courseVBox.setStyle("-fx-background-color:" + courseColour + ";");
-
 	}
 
 	public void resetVBox(){

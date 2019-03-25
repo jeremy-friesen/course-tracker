@@ -32,7 +32,15 @@ import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.time.LocalDate;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.input.Clipboard;
+import java.awt.Toolkit;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.StringSelection;
+import java.awt.datatransfer.Transferable;
+import java.awt.datatransfer.UnsupportedFlavorException;
+
 
 public class Main extends Application {
 	BorderPane mainPane = new BorderPane();
@@ -161,6 +169,23 @@ public class Main extends Application {
 		editMenu.getItems().add(paste);
 
 		menuBar.getMenus().addAll(fileMenu, editMenu);
+
+		// This is copy (Ctrl C)
+		StringSelection data = new StringSelection("This is copied to the clipboard");
+		Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
+		cb.setContent(data,data);
+
+		// This is paste (Ctrl V)
+
+		try {
+			Transferable t = cb.getContent(null);
+			if (t.isDataFlavorSupported(DataFlavor.stringFlavor))
+				System.out.println(t.getTransferData(DataFlavor
+						.stringFlavor));
+		} catch (UnsupportedFlavorException | IOException ex) {
+			System.out.println("");
+		}
+
 		return menuBar;
 	}
 
