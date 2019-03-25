@@ -4,9 +4,10 @@
 
 ## Contributors: 
 ### Jeremy Friesen - 
-### Shawn Yama - Colors
+### Shawn Yama - Colors, Color coding courses, Attempted 
 ### James Gilles - Add Course component button and the window that appears, Made ScrollPane for date, Added course sorting
-### Kenta Hattori - MenuBar and Functions
+### Kenta Hattori - MenuBar, Aided with MenuBar Functions 
+#### (In the commits both Kenta Hattori and callmekenta are the same person) 
 
 ## Repository link: https://github.com/jeremydavidfriesen/course-tracker
 
