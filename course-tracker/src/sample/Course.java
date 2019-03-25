@@ -145,11 +145,9 @@ public class Course implements Serializable {
 		courseVBox.getChildren().add(new Text(courseName + ":"));
 		courseVBox.getChildren().add(new Text("Course code: " + courseCode));
 		courseVBox.getChildren().add(new Text("Components:"));
-
 		for (int i = 0; i < courseComponents.size(); i++) {
 			courseVBox.getChildren().add(courseComponents.get(i).toVBox());
 		}
-
 		Button addComponent = new Button();
 		addComponent.setPadding(new Insets( 5));
 		addComponent.setText("Add Course Components");
@@ -163,7 +161,6 @@ public class Course implements Serializable {
 		courseVBox.getChildren().add(addComponent);
 		courseVBox.setStyle("-fx-border-color: #FFFFFF;");
 		courseVBox.setStyle("-fx-background-color:" + courseColour + ";");
-
 	}
 
 	public void resetVBox(){

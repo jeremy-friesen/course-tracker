@@ -32,13 +32,22 @@ import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.time.LocalDate;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.input.Clipboard;
+import java.awt.Toolkit;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.StringSelection;
+import java.awt.datatransfer.Transferable;
+import java.awt.datatransfer.UnsupportedFlavorException;
+
 
 public class Main extends Application {
 	BorderPane mainPane = new BorderPane();
 	BorderPane mainBorderPane = new BorderPane();
 	Semester semester = new Semester();
 	ScrollPane coursesScrollPane = new ScrollPane();
+	ScrollPane dateScrollPane = new ScrollPane();
 
 	Tab addCourseTab = new Tab();
 	Tab componentsTab = new Tab();
@@ -160,6 +169,9 @@ public class Main extends Application {
 		editMenu.getItems().add(paste);
 
 		menuBar.getMenus().addAll(fileMenu, editMenu);
+
+
+
 		return menuBar;
 	}
 
@@ -243,7 +255,8 @@ public class Main extends Application {
 			addCourseToSemester(courseNameTextField.getText(), courseCodeTextField.getText(), courseColour);
 
 			coursesScrollPane.setContent(semester.getCoursesGridPane());
-			componentsTab.setContent(semester.getCourseComponentsByDateVBox());
+			dateScrollPane.setContent(semester.getCourseComponentsByDateVBox());
+			componentsTab.setContent(dateScrollPane);
 			courseNameTextField.setText("");
 			courseCodeTextField.setText("");
 
