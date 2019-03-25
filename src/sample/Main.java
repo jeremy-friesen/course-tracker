@@ -170,6 +170,7 @@ public class Main extends Application {
 
 		menuBar.getMenus().addAll(fileMenu, editMenu);
 
+		/*
 		// This is copy (Ctrl C)
 		StringSelection data = new StringSelection("This is copied to the clipboard");
 		Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
@@ -185,6 +186,7 @@ public class Main extends Application {
 		} catch (UnsupportedFlavorException | IOException ex) {
 			System.out.println("");
 		}
+		*/
 
 		return menuBar;
 	}
