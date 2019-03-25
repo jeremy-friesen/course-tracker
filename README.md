@@ -14,7 +14,9 @@
 
 ## General Usage:
 ### To track courses that the student is currently taking and the student will be able to 
-### view the dates for all assignments, midterms and exams 
+### view the dates for all assignments, midterms and exams with ease
 
 ## Instructions:
-### 
+### 1. Put in the course name and course code in the respective textfields
+### 2. Add course components (Name, Weighted Mark, Date)
+### 3. 
