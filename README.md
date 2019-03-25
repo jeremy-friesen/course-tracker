@@ -13,11 +13,11 @@
 
 
 ## General Usage:
-### To track courses that the student is currently taking and the student will be able to 
-### view the dates for all assignments, midterms and exams with ease. 
-### Acts like an all in one course syllabus
+ To track courses that the student is currently taking and the student will be able to 
+ view the dates for all assignments, midterms and exams with ease. 
+ Acts like an all in one course syllabus
 
 ## Instructions:
-### 1. Put in the course name and course code in the respective textfields
-### 2. Add course components (Name, Weighted Mark, Date)
-### 3. View courses
+ 1. Put in the course name and course code in the respective textfields
+ 2. Add course components (Name, Weighted Mark, Date)
+ 3. View courses
