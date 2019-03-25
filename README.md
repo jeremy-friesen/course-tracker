@@ -2,7 +2,7 @@
 
 ## Course-Tracker
 
-## Contributors: 
+## Contributors :thumbsup: : 
  - Jeremy Friesen:
  - Shawn Yama: Colors, Color coding courses, Attempted to create edit and delete buttons for courses and components.
  - James Gilles: Add Course component button and the window that appears, Made ScrollPane for date, Added course sorting
