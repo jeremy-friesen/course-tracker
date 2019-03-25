@@ -46,7 +46,6 @@ public class Main extends Application {
 	Tab componentsTab = new Tab();
 
 	private String courseColour;
-	private Button submitCourseButton = new Button("Submit Course");
 
 
     @Override
@@ -241,6 +240,7 @@ public class Main extends Application {
 		});
 
 		// Course "Add" button
+		Button submitCourseButton = new Button("Submit Course");
 		submitCourseButton.setOnAction(e -> {
 			Button courseNameButton = new Button(courseNameTextField.getText());
 

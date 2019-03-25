@@ -17,6 +17,7 @@ import java.util.Comparator;
 
 public class Semester implements Serializable {
 	private ArrayList<Course> courses = new ArrayList<Course>();
+	private ArrayList<CourseComponent> courseComponents = new ArrayList<>();
 
 	// Constructors
 	public Semester(){}
@@ -44,7 +45,6 @@ public class Semester implements Serializable {
 	}
 
 	public ArrayList<CourseComponent> getCourseComponentsByDate(){
-		ArrayList<CourseComponent> courseComponents = new ArrayList<>();
 		for(int i = 0; i < courses.size(); i++){
 			courseComponents.addAll(courses.get(i).getCourseComponents());
 		}

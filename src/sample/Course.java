@@ -204,11 +204,11 @@ public class Course implements Serializable {
 
 		deleteButton.setOnAction(e -> {
 			deleteCourseComponent(oldComponent);
+			updateVBox();
 			scene.setFill(null);
 			newStage.setScene(scene);
 			newStage.show();
 			newStage.close();
-			updateVBox();
 		});
 	}
 
