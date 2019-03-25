@@ -1,11 +1,18 @@
 package sample;
 
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.control.Button;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.*;
+
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class CourseComponent {
+public class CourseComponent implements Serializable {
 	private double markWeight;
 	private boolean isComplete = false;
-	private double mark;
+	private double mark = 0.0;
 	private String name;
 	private LocalDate date;
 
@@ -34,7 +41,13 @@ public class CourseComponent {
 		return mark;
 	}
 
-	public String getName() { return name;	}
+	public String getName() {
+		return name;
+	}
+
+	public LocalDate getDate(){
+		return date;
+	}
 
 	// setters
 	public void setMarkWeight(double markWeight){
@@ -49,11 +62,13 @@ public class CourseComponent {
 		this.mark = mark;
 	}
 
-	public void setName(String name) { this.name = name; }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-	public void setDate(LocalDate date){this.date = date;}
-
-	public LocalDate getDate(){return this.date;}
+	public void setDate(LocalDate date){
+		this.date = date;
+	}
 
 	//@Override
 	public int compareTo(CourseComponent o1, CourseComponent o2) {
@@ -62,7 +77,10 @@ public class CourseComponent {
 
 	// print method
 	public void print() {
-		System.out.println("super method");
+		System.out.println("\tCourseComponent " + getName() + ":");
+		//System.out.println("\n\t\t" + "Due Date: " + dueDate.toString());
+		System.out.println("\t\t" + "Mark Weight: " + getMarkWeight() + "%");
+		System.out.println("\n\t\t" + "Mark: " + getMark() + "%");
 	}
 
 	public String toString(){
@@ -71,5 +89,36 @@ public class CourseComponent {
 		string = string + "\n\t\t" + "Mark Weight: " + getMarkWeight() + "%";
 		string = string + "\n\t\t" + "Mark: " + getMark() + "%";
 		return string;
+	}
+
+	public VBox toVBox(){
+
+		Text dateText = new Text(date.toString());
+		Text markWeightText = new Text(markWeight + "%");
+		dateText.setStyle("-fx-font-weight: bold");
+		markWeightText.setStyle("-fx-font-weight: bold");
+
+		// Create delete and edit buttons
+		Button componentButton = new Button();
+		componentButton.setText(name);
+		componentButton.setStyle("-fx-font-weight: bold; -fx-font-size: 14; -fx-background-color: transparent;");
+		componentButton.setAlignment(Pos.CENTER);
+
+		componentButton.setOnAction(e -> {
+			editComponent(name);
+		});
+
+		final VBox vbox = new VBox();
+		vbox.setPadding(new Insets( 5));
+		vbox.setSpacing(5);
+		vbox.getChildren().add(componentButton);
+		vbox.getChildren().add(dateText);
+		vbox.getChildren().add(markWeightText);
+		vbox.setStyle("-fx-border-width: 2px; -fx-border-color: white;");
+		return vbox;
+	}
+
+	public void editComponent(String name){
+		//course.addComponentGridPane();
 	}
 }
