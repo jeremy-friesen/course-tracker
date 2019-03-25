@@ -52,12 +52,13 @@ public class Semester implements Serializable {
 	}
 
 	public VBox getCourseComponentsByDateVBox(){
-		VBox vbox = new VBox();
+			VBox vbox = new VBox();
 		ArrayList<CourseComponent> courseComponents = getCourseComponentsByDate();
-		for(int i = 0; i < courseComponents.size(); i++){
-			courses.get(i).updateVBox();
-			vbox.getChildren().add(courseComponents.get(i).toVBox());
-		}
+
+			for(int i = 0; i < courseComponents.size(); i++){
+				vbox.getChildren().add(courseComponents.get(i).toVBox());
+			}
+
 		return vbox;
 	}
 
