@@ -1,6 +1,8 @@
 package sample;
 
 import javafx.application.Application;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
@@ -25,13 +27,18 @@ public class Client extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		Scene scene = new Scene(addCoursePane());
+		Scene scene = new Scene(addCoursePane(), 300, 200);
+		primaryStage.setTitle("Course Tracker Client");
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
 
 	private GridPane addCoursePane(){
 		GridPane gridPane = new GridPane();
+		gridPane.setAlignment(Pos.CENTER);
+		gridPane.setPadding(new Insets(10));
+		gridPane.setHgap(5);
+		gridPane.setVgap(15);
 
 		TextField courseNameTextField = new TextField();
 		courseNameTextField.setPromptText("Course Name");
@@ -40,6 +47,7 @@ public class Client extends Application {
 		courseCodeTextField.setPromptText("Course Code");
 
 		HBox colourHBox = new HBox();
+		colourHBox.setSpacing(5);
 
 		final ToggleGroup radioButtonGroup = new ToggleGroup();
 		RadioButton redButton = new RadioButton("Red");
@@ -112,11 +120,11 @@ public class Client extends Application {
 			}
 		});
 
+		//
 		gridPane.add(courseNameTextField, 0, 0);
 		gridPane.add(courseCodeTextField, 0, 1);
-		//gridPane.add(addCourseComponentMenuButton, 0, 2);
-		gridPane.add(colourHBox, 0, 3); // Add color choice
-		gridPane.add(submitCourseButton, 0, 4);
+		gridPane.add(colourHBox, 0, 2);
+		gridPane.add(submitCourseButton, 0, 3);
 
 		return gridPane;
 	}

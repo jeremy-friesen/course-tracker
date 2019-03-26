@@ -57,7 +57,7 @@ public class Main extends Application {
 
 		mainPane.setTop(menuBar());
 		mainPane.setCenter(mainBorderPane);
-		Scene scene = new Scene(mainPane, 1100, 600);
+		Scene scene = new Scene(mainPane, 1150, 600);
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("Course Tracker");
 		primaryStage.show();
@@ -156,7 +156,6 @@ public class Main extends Application {
 
 		menuBar.getMenus().addAll(fileMenu, editMenu);
 
-
 		/*// This is copy (Ctrl C)
 		StringSelection data = new StringSelection("This is copied to the clipboard");
 		Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
@@ -178,6 +177,9 @@ public class Main extends Application {
 
 	private GridPane addCoursePane(){
     	GridPane gridPane = new GridPane();
+    	gridPane.setPadding(new Insets (10));
+		gridPane.setHgap(5);
+		gridPane.setVgap(15);
 
 		TextField courseNameTextField = new TextField();
 		courseNameTextField.setPromptText("Course Name");
@@ -186,6 +188,7 @@ public class Main extends Application {
 		courseCodeTextField.setPromptText("Course Code");
 
 		HBox colourHBox = new HBox();
+		colourHBox.setSpacing(5);
 
 		final ToggleGroup radioButtonGroup = new ToggleGroup();
 		RadioButton greyButton = new RadioButton("Grey");
@@ -249,14 +252,12 @@ public class Main extends Application {
 
 		// Course "Add" button
 		Button submitCourseButton = new Button("Submit Course");
+		submitCourseButton.setPadding(new Insets(5, 20, 5, 20));
 
 		submitCourseButton.setOnAction(e -> {
-			GridPane content = semester.getCoursesGridPane();
-
 			addCourseToSemester(courseNameTextField.getText(), courseCodeTextField.getText(), courseColour);
 
-			coursesScrollPane.setContent(semester.getCoursesGridPane());
-			dateScrollPane.setContent(semester.getCourseComponentsByDateVBox());
+			updateUI();
 			componentsTab.setContent(dateScrollPane);
 
 			courseNameTextField.setText("");
@@ -266,13 +267,10 @@ public class Main extends Application {
 			courseColour = "#d3d3d3";
 		});
 
-
-
 		gridPane.add(courseNameTextField, 0, 0);
 		gridPane.add(courseCodeTextField, 0, 1);
-		//gridPane.add(addCourseComponentMenuButton, 0, 2);
-		gridPane.add(colourHBox, 0, 3); // Add color choice
-		gridPane.add(submitCourseButton, 0, 4);
+		gridPane.add(colourHBox, 0, 2);
+		gridPane.add(submitCourseButton, 0, 3);
 
 		return gridPane;
 	}
