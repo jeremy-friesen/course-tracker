@@ -4,7 +4,7 @@
 
 ## Contributors :thumbsup: : 
  - Jeremy Friesen: Semester-Course-Component interaction, File IO system, Components by Date Tab, Menubar Save/Load functionality, multi-threaded Socket IO to allow multiple Clients
- - Shawn Yama: Colors, Color coding courses, Attempted to create edit and delete buttons for courses and components.
+ - Shawn Yama: UI and color coding courses. Attempted to create edit and delete buttons for courses and components in Errors branch
  - James Gilles: Add Course component button and the window that appears, Made ScrollPane for date, Added course sorting
  - Kenta Hattori: MenuBar, Aided with MenuBar Functions, implemented Socket IO Server and Client to add courses via Network (In the commits both Kenta Hattori and callmekenta are the same person) 
 
@@ -13,9 +13,14 @@ https://github.com/jeremydavidfriesen/course-tracker
 
 
 ## General Usage:
- To track courses that the student is currently taking and the student will be able to 
+ Tracks courses that the student is currently taking. The student will be able to 
  view the dates for all assignments, midterms and exams with ease. 
- Acts like an all in one course syllabus
+ Acts like an all in one course syllabus.
+ 
+## Prerequisites
+- IntelliJ
+- Java 8
+- JavaFX
 
 ## Instructions: 
  *Run using intelliJ*
