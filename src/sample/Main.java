@@ -47,7 +47,7 @@ public class Main extends Application {
 	BorderPane mainBorderPane = new BorderPane();
 	Semester semester = new Semester();
 	ScrollPane coursesScrollPane = new ScrollPane();
-	ScrollPane dateScrollPane = new ScrollPane();
+	ScrollPane dateScrollPane = new ScrollPane();//
 
 	Tab addCourseTab = new Tab();
 	Tab componentsTab = new Tab();
