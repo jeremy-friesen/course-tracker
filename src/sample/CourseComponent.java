@@ -104,10 +104,6 @@ public class CourseComponent implements Serializable {
 		componentButton.setStyle("-fx-font-weight: bold; -fx-font-size: 14; -fx-background-color: transparent;");
 		componentButton.setAlignment(Pos.CENTER);
 
-		componentButton.setOnAction(e -> {
-			editComponent(name);
-		});
-
 		final VBox vbox = new VBox();
 		vbox.setPadding(new Insets( 5));
 		vbox.setSpacing(5);
@@ -116,9 +112,5 @@ public class CourseComponent implements Serializable {
 		vbox.getChildren().add(markWeightText);
 		vbox.setStyle("-fx-border-width: 2px; -fx-border-color: white;");
 		return vbox;
-	}
-
-	public void editComponent(String name){
-		//course.addComponentGridPane();
 	}
 }

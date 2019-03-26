@@ -1,31 +1,20 @@
 package sample;
 
 import javafx.application.Application;
-import javafx.event.EventHandler;
-import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
-import javafx.scene.Node;
-import javafx.scene.Parent;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
 import javafx.scene.layout.*;
-import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.application.Platform;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.SeparatorMenuItem;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-
-import java.awt.*;
-import java.awt.event.ActionEvent;
+import java.awt.datatransfer.*;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -34,12 +23,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.input.Clipboard;
 import java.awt.Toolkit;
-import java.awt.datatransfer.DataFlavor;
-import java.awt.datatransfer.StringSelection;
-import java.awt.datatransfer.Transferable;
-import java.awt.datatransfer.UnsupportedFlavorException;
 
 
 public class Main extends Application {
@@ -57,6 +41,8 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
     	TabPane leftMenu = new TabPane();
+		leftMenu.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
+
     	addCourseTab.setText("Add Course");
 		addCourseTab.setContent(addCoursePane());
 		componentsTab.setText("Components by Date");
@@ -170,8 +156,8 @@ public class Main extends Application {
 
 		menuBar.getMenus().addAll(fileMenu, editMenu);
 
-		/*
-		// This is copy (Ctrl C)
+
+		/*// This is copy (Ctrl C)
 		StringSelection data = new StringSelection("This is copied to the clipboard");
 		Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
 		cb.setContent(data,data);
@@ -179,14 +165,13 @@ public class Main extends Application {
 		// This is paste (Ctrl V)
 
 		try {
-			Transferable t = cb.getContent(null);
+			Transferable t = (Transferable) cb.getContent(null);
 			if (t.isDataFlavorSupported(DataFlavor.stringFlavor))
 				System.out.println(t.getTransferData(DataFlavor
 						.stringFlavor));
 		} catch (UnsupportedFlavorException | IOException ex) {
 			System.out.println("");
-		}
-		*/
+		}*/
 
 		return menuBar;
 	}
@@ -273,6 +258,7 @@ public class Main extends Application {
 			coursesScrollPane.setContent(semester.getCoursesGridPane());
 			dateScrollPane.setContent(semester.getCourseComponentsByDateVBox());
 			componentsTab.setContent(dateScrollPane);
+
 			courseNameTextField.setText("");
 			courseCodeTextField.setText("");
 

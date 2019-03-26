@@ -1,14 +1,10 @@
 package sample;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -54,10 +50,6 @@ public class Course implements Serializable {
 		courseComponents.sort(Comparator.comparing(c -> c.getDate()));
 	}
 
-	public void addCourseComponents(ArrayList<CourseComponent> newCourseComponents) {
-		this.courseComponents.addAll(newCourseComponents);
-	}
-
 	// Getters & Setters
 	public String getCourseName() {
 		return courseName;
@@ -98,8 +90,6 @@ public class Course implements Serializable {
 
 		TextField markWeightTextField = new TextField();
 		gridPane.add(markWeightTextField, 1, 1);
-
-
 
 		Button addButton = new Button("Add");
 		addButton.setOnAction(e -> {
