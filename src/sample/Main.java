@@ -255,9 +255,11 @@ public class Main extends Application {
 		submitCourseButton.setPadding(new Insets(5, 20, 5, 20));
 
 		submitCourseButton.setOnAction(e -> {
+			GridPane content = semester.getCoursesGridPane();
 			addCourseToSemester(courseNameTextField.getText(), courseCodeTextField.getText(), courseColour);
 
-			updateUI();
+			coursesScrollPane.setContent(semester.getCoursesGridPane());
+			dateScrollPane.setContent(semester.getCourseComponentsByDateVBox());
 			componentsTab.setContent(dateScrollPane);
 
 			courseNameTextField.setText("");
